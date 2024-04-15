@@ -18,6 +18,15 @@ public class JeuxOlympique implements MeilleurAthlete {
 
     public void ajoutePays(Pays Pays){
 
+    }
+
+    @Override
+    public Athlete meilleurAthlete() {
+        List<Athlete> lisA = new ArrayList<>();
+        for (Pays paysyemp : pays) {
+            lisA.add(paysyemp.meilleurAthlete());
+        }
+        return null;
     } 
 
    
