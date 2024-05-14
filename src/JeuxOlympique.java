@@ -2,36 +2,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JeuxOlympique implements MeilleurAthlete {
-    
-    private List<Pays> pays;
+    /**
+     * @param listpays liste des pays qui participe
+     * @param nom nom de JO 
+     */
+    private List<Pays> listpays;
     private String nom;
     
-    public List<Pays> getPays() {
-        return pays;
-    } 
+    /**
+     * Constructeur de la classe JeuxOlympique
+     * @param nom nom de JO
+     */
     public JeuxOlympique(String nom) {
         this.nom = nom;
-        this.pays = new ArrayList<>();
+        this.listpays = new ArrayList<>();
     }
 
+    /**
+     * geteur de listpays
+     * @return la liste des pays participents
+     */
+    public List<Pays> getPays() {
+        return listpays;
+    } 
+
+    /**
+     * geteur de nom
+     * @return nom de JO
+     */
     public String getNom() {
         return this.nom;
     }
-
+    /**
+     * ajoute un pays à le list des pays
+     * @param Pays pays à ajouter
+     */
     public void ajoutePays(Pays Pays){
-
+        getPays().add(Pays);
     }
-
+    
+    
     @Override
     public Athlete meilleurAthlete() {
-        /* 
-        List<Athlete> lisA = new ArrayList<>();
-        for (Pays paysyemp : this.getPays()) {
-            lisA.add(paysyemp.meilleurAthlete());
+        Pays paysSup = new Pays("Superieur");
+        for (Pays pays : listpays) {
+            paysSup.ajouteAthlete(pays.meilleurAthlete());
         }
-        for (Athlete  ath : lisA ) {
-            
-        }*/
+        return paysSup.meilleurAthlete();
     } 
 
    

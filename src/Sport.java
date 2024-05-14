@@ -1,4 +1,54 @@
+import java.util.List;
 
-public class Sport {
+public abstract class Sport {
+    private String nom;
+    private boolean collectif;
+    private int nbJoueur;
+    private List<Epreuve> epreuves;
 
+    /**
+     * @param nom le nom du sport
+     * @param collectif si le sport est collectif
+     * @param nbJoueur le nombre de joueurs du sport
+     */
+    public Sport(String nom, boolean collectif, int nbJoueur) {
+        this.nom = nom;
+        this.collectif = collectif;
+        this.nbJoueur = nbJoueur;
+    }
+
+    /**
+     * @return le nom du sport
+     */
+    public String getNom() {
+        return this.nom;
+    }
+
+    /**
+     * @return si le sport est collectif
+     */
+    public boolean estCollectif(){
+        return this.collectif;
+    }
+
+    /**
+     * @return le nombre de joueurs nécessaires dans le sport
+     */
+    public int getNbJoueur() {
+        return this.nbJoueur;
+    }
+
+    /**
+     * @param nbJoueur
+     */
+    public void setNbJoueur(int nbJoueur) {
+        this.nbJoueur = nbJoueur;
+    }
+
+    /**
+     * @param epreuve
+     */
+    public void ajouteEpreuve(Epreuve epreuve) {
+        this.epreuves.add(epreuve);
+    }
 }

@@ -1,3 +1,3 @@
 public interface MeilleurAthlete{
-    public void meilleurAthlete();
+    public Athlete meilleurAthlete();
 }
