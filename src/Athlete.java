@@ -148,15 +148,15 @@ public class Athlete implements Participant, Medaille{
         switch(typeMedaille){
             case "Or":
                 Integer newOr = this.lesMedailles.get("Or")+1;
-                this.lesMedailles.put("Or", newOr);
+                this.lesMedailles.replace("Or", newOr);
                 break;
             case "Argent":
                 Integer newArgent = this.lesMedailles.get("Argent")+1;
-                this.lesMedailles.put("Argent", newArgent);
+                this.lesMedailles.replace("Argent", newArgent);
                 break;
             case "Bronze":
                 Integer newBronze = this.lesMedailles.get("Bronze")+1;
-                this.lesMedailles.put("Bronze", newBronze);
+                this.lesMedailles.replace("Bronze", newBronze);
         }
     }
 }

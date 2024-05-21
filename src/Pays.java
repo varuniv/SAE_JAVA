@@ -30,34 +30,76 @@ public class Pays implements MeilleurAthlete {
      * @return le nombre de médailles d'or
      */
     public int nbMedailleOr(){
-        return 0;
+        Integer or = 0;
+        for (Athlete athlete: this.athletes){
+            or += athlete.getMedailles().get("Or");
+        }
+        return or;
     }
 
     /**
      * @return le nombre de médailles d'argent
      */
     public int nbMedailleArgent(){
-        return 0;
+        Integer argent = 0;
+        for (Athlete athlete: this.athletes){
+            argent += athlete.getMedailles().get("Argent");
+        }
+        return argent;
     }
 
     /**
      * @return le nombre de médailles de bronze
      */
     public int nbMedailleBronze(){
-        return 0;
+        Integer bronze = 0;
+        for (Athlete athlete: this.athletes){
+            bronze += athlete.getMedailles().get("Bronze");
+        }
+        return bronze;
     }
 
     /**
      * @return le nombre de médailles obtenues par le pays
      */
     public int nbMedaillesTotales(){
-        return 0;
+        return this.nbMedailleBronze()+this.nbMedailleArgent()+this.nbMedailleOr();
     }
     
     /**
      * À FAIRE
      */
     public Athlete meilleurAthlete(){
-        return null;
+        Athlete goat = null;
+        for(Athlete athlete: this.athletes){
+            if (goat == null){
+                goat = athlete;
+            }
+            else{
+                if(goat.getMedailles().get("Or") < athlete.getMedailles().get("Or")){
+                    goat = athlete;
+                }
+                else{
+                    if(goat.getMedailles().get("Or") == athlete.getMedailles().get("Or")){
+                        if(goat.getMedailles().get("Argent") < athlete.getMedailles().get("Argent")){
+                            goat = athlete;
+                        }
+                        else{
+                            if(goat.getMedailles().get("Argent") == athlete.getMedailles().get("Argent")){
+                                if(goat.getMedailles().get("Bronze") < athlete.getMedailles().get("Bronze")){
+                                    goat = athlete;
+                                }
+                                else{
+                                    if(goat.getMedailles().get("Bronze") == athlete.getMedailles().get("Bronze")){
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return goat;
     }
 }
