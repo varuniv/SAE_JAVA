@@ -12,7 +12,7 @@ public class Equipe implements Participant{
 
     /**
      * @param nomEquipe  nom de l'équipe
-     * @param epreuve  a une éoreuve à laquelle l'équipe participe
+     * @param epreuve  a une épreuve à laquelle l'équipe participe
      * @param placement son classement dans son épreuve
      * @param participee si elle peut participer ou pas à une épreuve en fonction de son nombre d'athlètes.
      */
@@ -125,6 +125,18 @@ public class Equipe implements Participant{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'participer'");
     }
+
+
+    @Override
+
+    public String toString(){
+        return "L'équipe:"+ this.nomEquipe+" a participé à l'épreuve :"+this.epreuve;
+    }
+    
+
+
+    
+
 
     
 }

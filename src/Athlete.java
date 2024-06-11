@@ -7,9 +7,9 @@ public class Athlete implements Participant, Medaille{
     private String nom;
     private String prenom;
     private String sexe;
-    private int force;
-    private int agilite;
-    private int endurance;
+    private double force;
+    private double agilite;
+    private double endurance;
     private boolean participeACompetition;
     private int placement;
     private Pays pays;
@@ -20,17 +20,17 @@ public class Athlete implements Participant, Medaille{
      * Constructeur de la classe Athlete
      * @param nom le nom de l'athlète
      * @param prenom le prénom de l'athlète
-     * @param sexe le sexe de l'athlète
-     * @param force la valeur de la force de l'athlète
-     * @param agilite la valeur de l'agilité de l'athlète
-     * @param endurance la valeur de l'endurance de l'athlète
+     * @param sexe le sexe de l'athlète F ou M
+     * @param force la valeur de la force de l'athlète entre 1 et 20
+     * @param agilite la valeur de l'agilité de l'athlète 1 et 20
+     * @param endurance la valeur de l'endurance de l'athlète 1 et 20
      * @param participeALaCompetition si l'athlète participe à la compétition
      * @param placement la position dans le classement de l'athlète
      * @param pays le pays de l'athlète
      * @param lesMedailles le dictionnaire des médailles de l'athlète
      * @param lesEpreuves les épreuves auxquelles participe l'athlète
      */
-    public Athlete(String nom, String prenom, String sexe, int force, int agilite, int endurance, int placement, Pays pays){
+    public Athlete(String nom, String prenom, String sexe, double force, double agilite, double endurance, Pays pays){
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
@@ -38,7 +38,6 @@ public class Athlete implements Participant, Medaille{
         this.agilite = agilite;
         this.endurance = endurance;
         this.participeACompetition = false;
-        this.placement = placement;
         this.lesMedailles = new HashMap<>();
         this.lesEpreuves = new ArrayList<>();
 
@@ -84,21 +83,21 @@ public class Athlete implements Participant, Medaille{
     /**
      * @return la force de l'athlète
      */
-    public int getForce(){
+    public double getForce(){
         return this.force;
     }
 
     /**
      * @return l'agilité de l'athlète
      */
-    public int getAgilite(){
+    public double getAgilite(){
         return this.agilite;
     }
 
     /**
      * @return l'endurance de l'athlète
      */
-    public int getEndurance(){
+    public double getEndurance(){
         return this.endurance;
     }
 
@@ -158,5 +157,11 @@ public class Athlete implements Participant, Medaille{
                 Integer newBronze = this.lesMedailles.get("Bronze")+1;
                 this.lesMedailles.replace("Bronze", newBronze);
         }
+    }
+
+    @Override
+    public String toString(){
+        String res = this.nom+" "+this.prenom+": ["+this.nom+" "+this.prenom+"a une force de "+this.force+", une agilité de "+this.agilite+" et une endurance de "+this.endurance+". Il vient de "+this.pays.getNom()+". Dans le classement il est "+this.placement+" et a "+this.lesMedailles.get("Or")+" médailles d'or, "+this.lesMedailles.get("Argent")+" médailles d'argent et "+this.lesMedailles.get("Bronze")+" médailles de bronze]";
+        return res;
     }
 }

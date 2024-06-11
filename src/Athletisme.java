@@ -15,4 +15,14 @@ public class Athletisme extends Sport{
     public int getDistance() {
         return this.distance;
     }
+
+    @Override
+    public String toString(){
+        String estCollectif = "Oui";
+        if(!(this.estCollectif())){
+            estCollectif = "Non";
+        }
+        String res = "Sport : "+ this.getNom() + ", Collectif: "+estCollectif+", Nombre de joueurs: "+this.getNbJoueur()+", Distance: "+this.distance; 
+        return res;
+    }
 }

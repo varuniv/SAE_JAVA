@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Epreuve {
     private List<Equipe> equipes;
@@ -8,6 +9,9 @@ public class Epreuve {
     private String categorie;
     private boolean estEnEquipe;
     private Sport sport;
+    private double critereForce;
+    private double critereAgilite;
+    private double critereEndurance;
 
     /**
      * @param nom
@@ -15,13 +19,16 @@ public class Epreuve {
      * @param categorie
      * @param estEnEquipe
      */
-    public Epreuve( String nom, Sport sport, String categorie, boolean estEnEquipe){
+    public Epreuve( String nom, Sport sport, String categorie, boolean estEnEquipe, double force, double agilite, double endurance){
         this.nom = nom;
         this.sport = sport;
         this.categorie = categorie;
         this.estEnEquipe = estEnEquipe;
         this.equipes = new ArrayList<>();
         this.athletes = new ArrayList<>();
+        this.critereForce = force;
+        this.critereAgilite = agilite;
+        this.critereEndurance = endurance;
     }
 
     /**
@@ -122,8 +129,25 @@ public class Epreuve {
         this.sport = sport;
     }
 
-
+    @Override
+    public String toString(){
+        return this.getNom()+"venant du sport : "+this.getSport().toString();
+    }
     
+    public double calculeResultat(Athlete athlete){
+        Random random = new Random();
+        double randomDouble = 1.0 + (50.0 - 1.0) * random.nextDouble();
+        double res = athlete.getForce()*this.critereForce + athlete.getEndurance()*this.critereEndurance + athlete.getAgilite()+this.critereAgilite+ randomDouble;
+        return res;
+    }
+
+    public double calculeResultatEquipe(Equipe equipe){
+        double res = 0;
+        for(Athlete athlete : equipe.getMembres()){
+            res += calculeResultat(athlete);
+        }
+        return res/equipe.getMembres().size();
+    }
 }
 
 

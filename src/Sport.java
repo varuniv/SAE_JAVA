@@ -51,4 +51,21 @@ public abstract class Sport {
     public void ajouteEpreuve(Epreuve epreuve) {
         this.epreuves.add(epreuve);
     }
+
+    @Override
+    public String toString() {
+        String res = "Sport: " + this.getNom();
+        if (this.estCollectif()) {
+            res += ", Collectif: Oui";
+            
+        }
+        
+        if (!this.estCollectif()) {
+            res += ", Collectif: Non";
+            
+        }
+        res += ", Nombre de Joueurs: " + this.getNbJoueur();
+        return res;
+    }
+
 }

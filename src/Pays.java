@@ -20,6 +20,11 @@ public class Pays implements MeilleurAthlete {
         return this.nom;
     }
 
+    @Override
+    public String toString(){
+        return this.getNom();
+    }
+    
     /**
      * @param athlete
      */
@@ -102,4 +107,5 @@ public class Pays implements MeilleurAthlete {
         }
         return goat;
     }
+    
 }

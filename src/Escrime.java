@@ -21,4 +21,13 @@ public class Escrime extends Sport{
     public String getEpee() {
         return this.typeEpee;
     }
+
+    @Override
+    public String toString(){
+        String res = this.getNom()+": "+this.getNbJoueur()+", Type de l'épée: "+this.typeEpee;
+        return res;
+    }
+    
 }
+
+
