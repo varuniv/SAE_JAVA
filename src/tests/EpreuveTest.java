@@ -1,16 +1,15 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.List;
-import java.util.ArrayList;
 
 public class EpreuveTest {
 
     @Test
     public void testAjouteUnAthlete() {
         Epreuve epreuve = new Epreuve("100m", new Athletisme("Athletisme", false, 1, 100), "Sprint", false, 0.3, 0.3, 0.4);
-        Athlete athlete1 = new Athlete("Doe", "John", "M", 80, 90, 70,  new Pays("France"));
-        Athlete athlete2 = new Athlete("Smith", "Emma", "F", 70, 85, 75,  new Pays("USA"));
-        Athlete athlete3 = new Athlete("Brown", "Michael", "M", 85, 95, 80,  new Pays("UK"));
+        Athlete athlete1 = new Athlete("Doe", "John", "M", 80, 90, 70,  new Pays("France"),1);
+        Athlete athlete2 = new Athlete("Smith", "Emma", "F", 70, 85, 75,  new Pays("USA"),2);
+        Athlete athlete3 = new Athlete("Brown", "Michael", "M", 85, 95, 80,  new Pays("UK"),3);
 
         epreuve.ajouteUnAthlete(athlete1);
         List<Athlete> athletes1 = epreuve.getAthletes();
@@ -117,7 +116,7 @@ public class EpreuveTest {
     @Test
     public void testCalculeResultat() {
         Epreuve epreuve = new Epreuve("100m", new Athletisme("Athletisme", false, 1, 100), "Sprint", false, 0.3, 0.3, 0.4);
-        Athlete athlete = new Athlete("Doe", "John", "M", 80, 90, 70, 1, new Pays("France"));
+        Athlete athlete = new Athlete("Doe", "John", "M", 80, 90, 70, new Pays("France"),1);
         double expectedResult = 80 * 0.3 + 90 * 0.4 + 70 * 0.3;
         double result = epreuve.calculeResultat(athlete);
         assertEquals(expectedResult, result, 0.001);
@@ -130,10 +129,10 @@ public class EpreuveTest {
     public void testCalculeResultatEquipe() {
         Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
         Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete1 = new Athlete("Doe", "John", "M", 80, 90, 70, 1, new Pays("France"));
-        Athlete athlete2 = new Athlete("Smith", "Emma", "F", 70, 85, 75, 2, new Pays("USA"));
-        Athlete athlete3 = new Athlete("Brown", "Michael", "M", 85, 95, 80, 3, new Pays("UK"));
-        Athlete athlete4 = new Athlete("Johnson", "Sophia", "F", 75, 85, 75, 4, new Pays("Germany"));
+        Athlete athlete1 = new Athlete("Doe", "John", "M", 80, 90, 70, new Pays("France"),1);
+        Athlete athlete2 = new Athlete("Smith", "Emma", "F", 70, 85, 75, new Pays("USA"),1);
+        Athlete athlete3 = new Athlete("Brown", "Michael", "M", 85, 95, 80,  new Pays("UK"),3);
+        Athlete athlete4 = new Athlete("Johnson", "Sophia", "F", 75, 85, 75, new Pays("Germany"), 4);
         equipe.ajouteMembre(athlete1);
         equipe.ajouteMembre(athlete2);
         equipe.ajouteMembre(athlete3);

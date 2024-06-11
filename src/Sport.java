@@ -1,10 +1,10 @@
 import java.util.List;
 
 public abstract class Sport {
-    private String nom;
-    private boolean collectif;
-    private int nbJoueur;
-    private List<Epreuve> epreuves;
+    protected String nom;
+    protected boolean collectif;
+    protected int nbJoueur;
+    protected List<Epreuve> epreuves;
 
     /**
      * @param nom le nom du sport
@@ -68,4 +68,10 @@ public abstract class Sport {
         return res;
     }
 
+    public Participant methodeCalculeVainqueur(){
+        return null;
+    }
+    public double methodeCalculePerf(){
+        return 0;
+    }
 }

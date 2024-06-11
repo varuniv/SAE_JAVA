@@ -24,6 +24,13 @@ public class Pays implements MeilleurAthlete {
     public String toString(){
         return this.getNom();
     }
+
+    /**
+     * @return le list des athletes 
+     */
+    public List<Athlete> getAthletes() {
+        return this.athletes;
+    }
     
     /**
      * @param athlete
@@ -107,5 +114,6 @@ public class Pays implements MeilleurAthlete {
         }
         return goat;
     }
+
     
 }

@@ -1,6 +1,4 @@
 import java.util.Random;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Handball extends Sport{
     /**
@@ -14,7 +12,9 @@ public class Handball extends Sport{
         super(nom, collectif, nbJoueur);
     }
     
-    public List<Integer> methodeCalcule(double scoreA, double scoreB){
+    public Equipe methodeCalculeVainqueur(Equipe equipeA, Equipe equipeB, Epreuve epreuve){
+        double scoreA = epreuve.calculeResultatEquipe(equipeA);
+        double scoreB = epreuve.calculeResultatEquipe(equipeB);
         Random rand = new Random();
         int nombreAleatoire = 50 + rand.nextInt(21);
         int pointA = 0;
@@ -25,9 +25,12 @@ public class Handball extends Sport{
             if (randomNum < scoreA) {pointA++;} 
             else {pointB++;}
         }
-        List<Integer> points = new ArrayList<>();
-        points.add(pointA);
-        points.add(pointB);
-        return points;
+        if (pointA > pointB){
+            return equipeA;
+        }
+        else if (pointA < pointB){
+            return equipeB;
+        }
+        return null;
     }
 }

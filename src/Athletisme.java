@@ -25,4 +25,12 @@ public class Athletisme extends Sport{
         String res = "Sport : "+ this.getNom() + ", Collectif: "+estCollectif+", Nombre de joueurs: "+this.getNbJoueur()+", Distance: "+this.distance; 
         return res;
     }
+
+    /**
+     * @param score score du nageur ou de l'équipe 
+     * @return renvoie un temps pour le nageur ou de l'équipe en fonction de leur score.
+     */
+    public double methodeCalculePerf(double score){
+        return (1600-score*1.5)*(this.getDistance()/100);
+    }
 }

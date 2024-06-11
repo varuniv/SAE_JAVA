@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class Athlete implements Participant, Medaille{
+    private int id;
     private String nom;
     private String prenom;
     private String sexe;
@@ -30,7 +31,8 @@ public class Athlete implements Participant, Medaille{
      * @param lesMedailles le dictionnaire des médailles de l'athlète
      * @param lesEpreuves les épreuves auxquelles participe l'athlète
      */
-    public Athlete(String nom, String prenom, String sexe, double force, double agilite, double endurance, Pays pays){
+    public Athlete(String nom, String prenom, String sexe, double force, double agilite, double endurance, Pays pays, int id){
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
@@ -40,10 +42,17 @@ public class Athlete implements Participant, Medaille{
         this.participeACompetition = false;
         this.lesMedailles = new HashMap<>();
         this.lesEpreuves = new ArrayList<>();
-
+        this.pays = pays;
         this.lesMedailles.put("Or", 0);
         this.lesMedailles.put("Argent", 0);
         this.lesMedailles.put("Bronze", 0);
+    }
+
+    /**
+     * @return l'id de l'athlète
+     */
+    public int getId(){
+        return this.id;
     }
 
     /**
@@ -132,10 +141,12 @@ public class Athlete implements Participant, Medaille{
 
     /**
      * Fait participer l'athlète à la compétition
+     * @param compet Une Competition en solo
+     * @return Si l'athlete a été joué
      */
     @Override
-    public void participer(){
-        this.participeACompetition = true;
+    public boolean participer(Competition compet){
+        return compet.ajoute(this);
     }
 
     /**
@@ -163,5 +174,20 @@ public class Athlete implements Participant, Medaille{
     public String toString(){
         String res = this.nom+" "+this.prenom+": ["+this.nom+" "+this.prenom+"a une force de "+this.force+", une agilité de "+this.agilite+" et une endurance de "+this.endurance+". Il vient de "+this.pays.getNom()+". Dans le classement il est "+this.placement+" et a "+this.lesMedailles.get("Or")+" médailles d'or, "+this.lesMedailles.get("Argent")+" médailles d'argent et "+this.lesMedailles.get("Bronze")+" médailles de bronze]";
         return res;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(obj instanceof Athlete){
+            Athlete other = (Athlete) obj;
+            return this.id == other.id;
+        }
+        return false;
     }
 }

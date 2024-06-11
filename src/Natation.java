@@ -23,6 +23,14 @@ public class Natation extends Sport {
         return this.distance;
     }
 
+    /**
+     * @param score score du nageur ou de l'équipe 
+     * @return renvoie un temps pour le nageur ou de l'équipe en fonction de leur score.
+     */
+    public double methodeCalculePerf(double score){
+        return (800-score)*(this.getDistance()/100);
+    }
+
     @Override
     public String toString(){
         String estCollectif = "Oui";

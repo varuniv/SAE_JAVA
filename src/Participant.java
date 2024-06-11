@@ -1,3 +1,3 @@
 public interface Participant{
-    public void participer();
+    public boolean participer(Competition compet);
 }

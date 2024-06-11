@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Escrime extends Sport{
     private String typeEpee;
 
@@ -28,6 +30,26 @@ public class Escrime extends Sport{
         return res;
     }
     
+    public Athlete methodeCalculeVainqueur(Athlete athleteA, Athlete athleteB, Epreuve epreuve){
+        double scoreA = epreuve.calculeResultat(athleteA);
+        double scoreB = epreuve.calculeResultat(athleteB);
+        Random rand = new Random();
+        int pointA = 0;
+        int pointB = 0;
+        while(pointA < 15 && pointB < 15){
+            double total = scoreA + scoreB;
+            Double randomNum = rand.nextDouble(total);
+            if (randomNum < scoreA) {pointA++;} 
+            else {pointB++;}
+        }
+        if(pointA > pointB){
+            return athleteA;
+        }
+        else if(pointB > pointA){
+            return athleteB;
+        }
+        return null;
+    }
 }
 
 

@@ -24,6 +24,14 @@ public class Equipe implements Participant{
         this.membres = new ArrayList<>();
     }
 
+    public Equipe(String nomEquipe) {
+        this.nomEquipe = nomEquipe;
+        this.epreuve = null;
+        this.placement = 0;
+        this.participee = false;
+        this.membres = new ArrayList<>();
+    }
+
     /**
      * @return le nom de l'equipe
      */
@@ -107,7 +115,7 @@ public class Equipe implements Participant{
     }
     
     /**
-     * @param athlete
+     * @param athlete un Athlete
      */
     public void ajouteMembre( Athlete athlete){
         this.membres.add(athlete);
@@ -120,15 +128,17 @@ public class Equipe implements Participant{
         return this.placement;
     }
     
+    /**
+     * @param compet Une Competition en Equipe
+     * @return Si l'équipe a été ajouté
+     */
     @Override
-    public void participer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'participer'");
+    public boolean participer(Competition compet) {
+        return compet.ajoute(this);
     }
 
 
     @Override
-
     public String toString(){
         return "L'équipe:"+ this.nomEquipe+" a participé à l'épreuve :"+this.epreuve;
     }
