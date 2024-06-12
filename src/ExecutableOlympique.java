@@ -33,7 +33,11 @@ public class ExecutableOlympique {
         b.ajouteMembre(anna);
         b.ajouteMembre(john);
 
+        Competition cp = new Competition(epr1);
+        cp.ajoute(a);
+        cp.ajoute(b);
+        System.out.println(cp.ExecutionPooleEquipe());
         
-        System.out.println(escrime.methodeCalculeVainqueur(jean,toto,epr2));
+        //ystem.out.println(escrime.methodeCalculeVainqueur(jean,toto,epr2));
     }
 }

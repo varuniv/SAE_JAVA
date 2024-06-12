@@ -143,10 +143,19 @@ public class Equipe implements Participant{
         return "L'équipe:"+ this.nomEquipe+" a participé à l'épreuve :"+this.epreuve;
     }
     
-
-
-    
-
-
-    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(obj instanceof Equipe){
+            Equipe other = (Equipe) obj;
+            return this.nomEquipe.equals(other.nomEquipe) && this.membres.equals(other.membres) ;
+        }
+        return false;
+    }
 }
+    

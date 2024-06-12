@@ -11,7 +11,7 @@ public abstract class Sport {
      * @param collectif si le sport est collectif
      * @param nbJoueur le nombre de joueurs du sport
      */
-    public Sport(String nom, boolean collectif, int nbJoueur) {
+    protected Sport(String nom, boolean collectif, int nbJoueur) {
         this.nom = nom;
         this.collectif = collectif;
         this.nbJoueur = nbJoueur;
@@ -68,10 +68,10 @@ public abstract class Sport {
         return res;
     }
 
-    public Participant methodeCalculeVainqueur(){
+    public Participant methodeCalculeVainqueur(Participant participent1,Participant participant, Epreuve epreuve ){
         return null;
     }
-    public double methodeCalculePerf(){
+    public double methodeCalculePerf(double score){
         return 0;
     }
 }

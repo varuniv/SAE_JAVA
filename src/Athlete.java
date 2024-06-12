@@ -186,7 +186,7 @@ public class Athlete implements Participant, Medaille{
         }
         if(obj instanceof Athlete){
             Athlete other = (Athlete) obj;
-            return this.id == other.id;
+            return this.id == other.id && this.nom.equals(other.nom) && this.prenom.equals(other.prenom) && this.sexe.equals(other.sexe) && this.force == other.force && this.agilite == other.agilite && this.endurance == other.endurance;
         }
         return false;
     }
