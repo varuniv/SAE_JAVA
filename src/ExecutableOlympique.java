@@ -36,8 +36,9 @@ public class ExecutableOlympique {
         Competition cp = new Competition(epr1);
         cp.ajoute(a);
         cp.ajoute(b);
-        System.out.println(cp.ExecutionPooleEquipe());
+        JO.ajoutePays(us);
         
-        //ystem.out.println(escrime.methodeCalculeVainqueur(jean,toto,epr2));
+        System.out.println(cp.ExecutionPooleEquipe());
+        System.out.println(escrime.methodeCalculeVainqueur(jean,toto,epr2));
     }
 }
