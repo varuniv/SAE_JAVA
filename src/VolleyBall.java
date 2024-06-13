@@ -25,7 +25,7 @@ public class VolleyBall extends Sport {
         int pointB = 0;
         while(pointA < 3 && pointB < 3){
             double total = scoreA + scoreB;
-            Double randomNum = rand.nextDouble(total);
+            Double randomNum = rand.nextDouble()*total;
             if (randomNum < scoreA) {pointA++;} 
             else {pointB++;}
         }

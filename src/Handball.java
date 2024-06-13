@@ -21,7 +21,7 @@ public class Handball extends Sport{
         int pointB = 0;
         for(int i = 0; i < nombreAleatoire; i++){
             double total = scoreA + scoreB;
-            Double randomNum = rand.nextDouble(total);
+            Double randomNum = rand.nextDouble()*total;
             if (randomNum < scoreA) {pointA++;} 
             else {pointB++;}
         }
