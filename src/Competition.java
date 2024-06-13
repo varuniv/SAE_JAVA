@@ -8,13 +8,6 @@ public class Competition{
     private Epreuve epreuve;
 
 
-    
-   
-
-    public Competition() {
-        this.listeParticipant = new ArrayList<>();
-        this.epreuve = null;
-    }
 
     public Competition(Epreuve epreuve) {
         this.listeParticipant = new ArrayList<>();

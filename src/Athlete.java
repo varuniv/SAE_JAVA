@@ -146,7 +146,11 @@ public class Athlete implements Participant, Medaille{
      */
     @Override
     public boolean participer(Competition compet){
-        return compet.ajoute(this);
+        if( compet.ajoute(this)){
+            this.participeACompetition = true;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -172,7 +176,7 @@ public class Athlete implements Participant, Medaille{
 
     @Override
     public String toString(){
-        String res = this.nom+" "+this.prenom+": ["+this.nom+" "+this.prenom+"a une force de "+this.force+", une agilité de "+this.agilite+" et une endurance de "+this.endurance+". Il vient de "+this.pays.getNom()+". Dans le classement il est "+this.placement+" et a "+this.lesMedailles.get("Or")+" médailles d'or, "+this.lesMedailles.get("Argent")+" médailles d'argent et "+this.lesMedailles.get("Bronze")+" médailles de bronze]";
+        String res = this.nom+" "+this.prenom+": ["+this.nom+" "+this.prenom+" a une force de "+this.force+", une agilité de "+this.agilite+" et une endurance de "+this.endurance+". Il vient de "+this.pays.getNom()+". Dans le classement il est "+this.placement+" et a "+this.lesMedailles.get("Or")+" médailles d'or, "+this.lesMedailles.get("Argent")+" médailles d'argent et "+this.lesMedailles.get("Bronze")+" médailles de bronze]";
         return res;
     }
 

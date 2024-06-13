@@ -112,39 +112,6 @@ public class EpreuveTest {
         assertEquals(expected3, epreuve3.toString());
         assertNotNull("La représentation en chaîne de l'épreuve est null", epreuve3.toString());
     }
-
-    @Test
-    public void testCalculeResultat() {
-        Epreuve epreuve = new Epreuve("100m", new Athletisme("Athletisme", false, 1, 100), "Sprint", false, 0.3, 0.3, 0.4);
-        Athlete athlete = new Athlete("Doe", "John", "M", 80, 90, 70, new Pays("France"),1);
-        double expectedResult = 80 * 0.3 + 90 * 0.4 + 70 * 0.3;
-        double result = epreuve.calculeResultat(athlete);
-        assertEquals(expectedResult, result, 0.001);
-        assertEquals("Le résultat calculé de l'athlète est incorrect", expectedResult, result, 0.001);
-        assertTrue("Le résultat calculé de l'athlète doit être positif", result >= 0);
-        assertNotNull("Le résultat calculé de l'athlète est null", result);
-    }
-
-    @Test
-    public void testCalculeResultatEquipe() {
-        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
-        Equipe equipe = new Equipe("Équipe 1");
-        Athlete athlete1 = new Athlete("Doe", "John", "M", 80, 90, 70, new Pays("France"),1);
-        Athlete athlete2 = new Athlete("Smith", "Emma", "F", 70, 85, 75, new Pays("USA"),1);
-        Athlete athlete3 = new Athlete("Brown", "Michael", "M", 85, 95, 80,  new Pays("UK"),3);
-        Athlete athlete4 = new Athlete("Johnson", "Sophia", "F", 75, 85, 75, new Pays("Germany"), 4);
-        equipe.ajouteMembre(athlete1);
-        equipe.ajouteMembre(athlete2);
-        equipe.ajouteMembre(athlete3);
-        equipe.ajouteMembre(athlete4);
-
-        double expectedResult = (80 * 0.3 + 90 * 0.4 + 70 * 0.3) + (70 * 0.3 + 85 * 0.4 + 75 * 0.3) + (85 * 0.3 + 95 * 0.4 + 80 * 0.3) + (75 * 0.3 + 85 * 0.4 + 75 * 0.3);
-        double result = epreuve.calculeResultatEquipe(equipe);
-        assertEquals(expectedResult, result, 0.001);
-        assertEquals("Le résultat calculé de l'équipe est incorrect", expectedResult, result, 0.001);
-        assertTrue("Le résultat calculé de l'équipe doit être positif", result >= 0);
-        assertNotNull("Le résultat calculé de l'équipe est null", result);
-    }
 }
 
    

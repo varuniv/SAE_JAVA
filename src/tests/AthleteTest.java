@@ -91,7 +91,9 @@ public class AthleteTest {
   
     @Test
     public void testParticiper() {
-        Competition competition = new Competition();
+        VolleyBall volleyBall = new VolleyBall("VolleyBall", true, 6);
+        Epreuve epr1 = new Epreuve("VolleyBall", volleyBall, "M", true, 3.5, 1.5, 2.5);
+        Competition competition = new Competition(epr1);
         assertTrue(athlete.participer(competition));
         assertTrue(athlete.getParticipeACompetition());
     }

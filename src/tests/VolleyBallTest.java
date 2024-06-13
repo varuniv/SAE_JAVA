@@ -27,5 +27,5 @@ public class VolleyBallTest {
         assertEquals(nom, volleyBall.getNom());
         assertEquals(collectif, volleyBall.estCollectif());
         assertEquals(nbJoueur, volleyBall.getNbJoueur());
-    }
+    }    
 }
