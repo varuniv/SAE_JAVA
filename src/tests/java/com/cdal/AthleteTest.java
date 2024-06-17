@@ -1,4 +1,4 @@
-package tests;
+package tests.java.com.cdal;
 
 
 import static org.junit.Assert.assertEquals;
@@ -7,10 +7,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.Athlete;
-
-import main.Pays;
-import main.VolleyBall;
+import main.java.com.cdal.Athlete;
+import main.java.com.cdal.Competition;
+import main.java.com.cdal.Epreuve;
+import main.java.com.cdal.Pays;
+import main.java.com.cdal.VolleyBall;
 
 import java.util.List;
 import java.util.Map;

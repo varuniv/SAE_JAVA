@@ -1,5 +1,4 @@
-package main;
-
+package main.java.com.cdal;
 import java.util.Random;
 
 public class Handball extends Sport{
@@ -15,10 +14,10 @@ public class Handball extends Sport{
     }
     
     /**
-     * @param equipeA première équipe
-     * @param equipeB deuxième équipe
-     * @param epreuve l'epreuve sur laquelle s'affronte l'équipe
-     * @return le gagnant de l'affrontement
+     * @param equipeA
+     * @param equipeB
+     * @param epreuve
+     * @return
      */
     @Override
     public Participant methodeCalculeVainqueur(Participant equipeA, Participant equipeB, Epreuve epreuve){

@@ -1,10 +1,10 @@
 {
     "java.project.sourcePaths": [
-        "src",
-        "src/tests"
+        "src"
     ],
     "java.project.referencedLibraries": [
-        "hamcrest-2.2.jar",
-        "junit-4.13.2.jar"
-    ]
+        "/home/iut45/Etudiants/o22306517/Cour/SAE_JAVA/lib/junit-4.13.2.jar",
+        "/home/iut45/Etudiants/o22306517/Cour/SAE_JAVA/lib/hamcrest-2.2.jar"
+    ],
+    "java.project.outputPath": "bin"
 }

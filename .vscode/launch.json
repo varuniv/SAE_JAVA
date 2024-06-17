@@ -8,6 +8,13 @@
             "type": "java",
             "name": "ExecutableOlympique",
             "request": "launch",
+            "mainClass": "main.java.com.cdal.ExecutableOlympique",
+            "projectName": "SAE_JAVA_71a6c193"
+        },
+        {
+            "type": "java",
+            "name": "ExecutableOlympique",
+            "request": "launch",
             "mainClass": "main.ExecutableOlympique",
             "projectName": "SAE_JAVA_71a6c193"
         },
