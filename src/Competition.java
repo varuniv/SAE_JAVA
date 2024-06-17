@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 public class Competition{
     private List<Participant> listeParticipant;
@@ -111,5 +112,21 @@ public class Competition{
             return this.getEpreuve().getSport().methodeCalculePerf(this.getEpreuve().calculeResultat(ath));
         }
         return 0;
+    }
+
+    public void AttribuerMedaille(List<Participant> placement){
+        List<String> medailles= Arrays.asList("Or", "Argent", "Bronze");
+        if(placement.get(0) instanceof Equipe){
+            for(int i = 0; i<3 ; i++){
+                Equipe equipe = (Equipe) placement.get(i);
+                equipe.DonnerMedaille(medailles.get(i));
+            }
+        }
+        else{
+            for(int i = 0; i<3 ; i++){
+                Athlete athlete = (Athlete) placement.get(i);
+                athlete.gagne(medailles.get(i));
+            }
+        }
     }
 }

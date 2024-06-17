@@ -143,6 +143,13 @@ public class Equipe implements Participant{
     public int getPlacement(){
         return this.placement;
     }
+
+    public void DonnerMedaille(String medaille){
+
+        for (Athlete ath : this.membres) {
+            ath.gagne(medaille);
+        }
+    }
     
     /**
      * @param compet Une Competition en Equipe

@@ -49,5 +49,9 @@ public class JeuxOlympique  {
         return this.nom;
     }
 
+    public List<Pays> ClassementPays(){
+        return this.listpays.sort( ->
+    }
+
    
 }
