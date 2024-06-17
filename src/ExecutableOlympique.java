@@ -16,22 +16,26 @@ public class ExecutableOlympique {
 
         //Les pays
         Pays france = new Pays("France");
-        Pays italie = new Pays("Italie");
         Pays us = new Pays("US");
         
         //Les athlètes
-        Athlete jean = new Athlete("Jean", "Dupond", "M", 2, 8, 6,france, 1);
-        Athlete toto = new Athlete("Toto", "Dupond", "M", 4, 2, 5,italie, 2);
-        Athlete anna = new Athlete("Anna", "Belle", "F", 3, 3, 3,us, 3);
+        Athlete jean = new Athlete("Jean", "Dupond", "M", 2, 8, 6,us, 1);
+        Athlete toto = new Athlete("Toto", "Dupond", "M", 4, 2, 5,us, 2);
+        Athlete anna = new Athlete("Anna", "Belle", "M", 3, 3, 3,france, 3);
         Athlete john = new Athlete("John", "Paul", "M", 5, 3, 7, france, 4);
 
         //Les équipes
-        Equipe a = new Equipe("A", epr1, 2, true);
-        Equipe b = new Equipe("B", epr2, 5, true);
-        a.ajouteMembre(jean);
-        a.ajouteMembre(toto);
-        b.ajouteMembre(anna);
-        b.ajouteMembre(john);
+        Equipe a = new Equipe("A", epr1, true,us,"M");
+        Equipe b = new Equipe("B", epr2, true,france,"M");
+        try {
+            a.ajouteMembre(jean);
+            a.ajouteMembre(toto);
+            b.ajouteMembre(anna);
+            b.ajouteMembre(john);
+        } catch (Exception e) {
+            System.out.println("erreur");
+        }
+     
 
         Competition cp = new Competition(epr1);
         cp.ajoute(a);

@@ -18,10 +18,10 @@ public class Equipe implements Participant{
      * @param placement son classement dans son épreuve
      * @param participee si elle peut participer ou pas à une épreuve en fonction de son nombre d'athlètes.
      */
-    public Equipe(String nomEquipe, Epreuve epreuve, int placement, boolean participee, Pays pays, String genre){
+    public Equipe(String nomEquipe, Epreuve epreuve, boolean participee, Pays pays, String genre){
         this.nomEquipe = nomEquipe;
         this.epreuve = epreuve;
-        this.placement = placement;
+        this.placement = 0;
         this.participee = participee;
         this.membres = new ArrayList<>();
         this.pays = pays;

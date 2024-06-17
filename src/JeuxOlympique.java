@@ -50,8 +50,9 @@ public class JeuxOlympique  {
     }
 
     public List<Pays> ClassementPays(){
-        return this.listpays.sort( ->
+        List<Pays> tmp = new ArrayList<>(); tmp.addAll(this.getPays());
+        tmp.sort(new ComparateurClassementPays());
+        return tmp;
+       
     }
-
-   
 }

@@ -4,6 +4,7 @@ import java.util.List;
 public class Pays implements MeilleurAthlete {
     private String nom;
     private List<Athlete> athletes;
+    private List<Equipe> equipes; 
 
     /**
      * @param nom
@@ -11,6 +12,7 @@ public class Pays implements MeilleurAthlete {
     public Pays(String nom){
         this.nom = nom;
         this.athletes = new ArrayList<>();
+        this.equipes = new ArrayList<>();
     }
 
     /**
@@ -20,11 +22,15 @@ public class Pays implements MeilleurAthlete {
         return this.nom;
     }
 
-    @Override
-    public String toString(){
-        return this.getNom();
+    public List<Equipe> getEquipes(){
+        return this.equipes;
     }
 
+    public void ajouteEquipe(Equipe equipe){
+        this.equipes.add(equipe);
+    }
+
+    
     /**
      * @return le list des athletes 
      */
@@ -77,6 +83,13 @@ public class Pays implements MeilleurAthlete {
     public int nbMedaillesTotales(){
         return this.nbMedailleBronze()+this.nbMedailleArgent()+this.nbMedailleOr();
     }
+
+    @Override
+    public String toString(){
+        return this.getNom() + " possede " + this.nbMedaillesTotales() +
+        " dont " +this.nbMedailleOr() + " médailles d'or " + this.nbMedailleArgent() + " médailles d'argent " + this.nbMedailleBronze() + " médailles de bronze" ;
+    }
+
     
     /**
      * À FAIRE
