@@ -8,7 +8,8 @@ public class Equipe implements Participant{
     private boolean participee;
     private Epreuve epreuve;
     private List<Athlete> membres;
-    private  static boolean estPrete = false; 
+    private static boolean estPrete = false; 
+    private Pays pays;
 
     /**
      * @param nomEquipe  nom de l'équipe
@@ -16,12 +17,13 @@ public class Equipe implements Participant{
      * @param placement son classement dans son épreuve
      * @param participee si elle peut participer ou pas à une épreuve en fonction de son nombre d'athlètes.
      */
-    public Equipe(String nomEquipe, Epreuve epreuve, int placement, boolean participee){
+    public Equipe(String nomEquipe, Epreuve epreuve, int placement, boolean participee, Pays pays){
         this.nomEquipe = nomEquipe;
         this.epreuve = epreuve;
         this.placement = placement;
         this.participee = participee;
         this.membres = new ArrayList<>();
+        this.pays = pays;
     }
 
     public Equipe(String nomEquipe) {
@@ -113,12 +115,20 @@ public class Equipe implements Participant{
         }
         
     }
+
+    public Pays getPays(){
+        return this.pays;
+    }
     
     /**
      * @param athlete un Athlete
      */
-    public void ajouteMembre( Athlete athlete){
-        this.membres.add(athlete);
+    public void ajouteMembre( Athlete athlete) throws PasDansCePaysException{
+        if(athlete.getPays().equals(this.getPays()))
+            this.membres.add(athlete);
+        else{
+            throw new PasDansCePaysException();
+        }
     }
     
     /**
