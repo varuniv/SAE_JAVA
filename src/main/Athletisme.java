@@ -1,3 +1,5 @@
+package main;
+
 public class Athletisme extends Sport{
     private int distance;
 

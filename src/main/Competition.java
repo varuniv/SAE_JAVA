@@ -1,3 +1,6 @@
+
+package main;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,20 +12,25 @@ public class Competition{
     private Epreuve epreuve;
 
 
-
+    /**
+     * Constructeur de Competition sans participants de base
+     * @param epreuve une epreuve sur laquelle se jouera la compétition
+     */
     public Competition(Epreuve epreuve) {
         this.listeParticipant = new ArrayList<>();
         this.epreuve = epreuve;
     }
 
+    /**
+     * Constructeur de Competition avec une liste de participants de base
+     * @param listeParticipant une liste de participants
+     * @param epreuve une epreuve sur laquelle se jouera la compétition
+     */
     public Competition(List<Participant> listeParticipant, Epreuve epreuve) {
         this.listeParticipant = listeParticipant;
         this.epreuve = epreuve;
     }
     
-    public void setEpreuve(Epreuve epreuve) {
-        this.epreuve = epreuve;
-    }
     /**
      * @return le list des participents 
      */
@@ -31,7 +39,7 @@ public class Competition{
     }
 
     /**
-     * @return
+     * @return l'epreuve de cette competition
      */
     public Epreuve getEpreuve(){
         return this.epreuve;
@@ -56,6 +64,9 @@ public class Competition{
         return res;
     }
 
+    /**
+     * @return la liste triée des participants de cette épreuve du plus au moins performant
+     */
     public List<Participant> ExecutionPerf(){
         Map<Participant, Double> scoresMap = new HashMap<>();
         for (Participant participant : this.getListeParticipant()) {
@@ -72,6 +83,9 @@ public class Competition{
         return sortedParticipants;
     }
 
+    /** 
+     * @return la liste triée des participants de cette épreuve de celui qui a le plus gagné à celui qui a le moins gagné
+     */
     public List<Participant> ExecutionPooleEquipe(){
         Map<Participant,List<Participant>> dic = new HashMap<>();
         if (!(listeParticipant.isEmpty())) {
@@ -95,6 +109,11 @@ public class Competition{
         return null ;
     }
 
+    /**
+     * @param partc1 Participant 1
+     * @param partc2 Participant 2
+     * @return renvoie lequel gagne entre 2 participants à l'épreuve de la compétition
+     */
     public Participant jouerMatch(Participant partc1,Participant partc2){
         if(partc1.equals(partc2)){
             return null;
@@ -102,13 +121,16 @@ public class Competition{
         return this.getEpreuve().getSport().methodeCalculeVainqueur(partc1,partc2,this.getEpreuve());
     }
 
-    public double fairTemps(Participant prarticipant){
-        if (prarticipant instanceof Equipe){
-            Equipe eqp = (Equipe) prarticipant;
+    /**
+     * @param p
+     */
+    public double fairTemps(Participant participant){
+        if (participant instanceof Equipe){
+            Equipe eqp = (Equipe) participant;
             return this.getEpreuve().getSport().methodeCalculePerf(this.getEpreuve().calculeResultatEquipe(eqp));
         }
-        if (prarticipant instanceof Athlete){
-            Athlete ath = (Athlete) prarticipant;
+        if (participant instanceof Athlete){
+            Athlete ath = (Athlete) participant;
             return this.getEpreuve().getSport().methodeCalculePerf(this.getEpreuve().calculeResultat(ath));
         }
         return 0;

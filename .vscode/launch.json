@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ExecutableOlympique",
+            "request": "launch",
+            "mainClass": "main.ExecutableOlympique",
+            "projectName": "SAE_JAVA_71a6c193"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

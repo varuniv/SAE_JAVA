@@ -1,3 +1,4 @@
+package main;
 import java.util.Comparator;
 
 /**
@@ -5,7 +6,10 @@ import java.util.Comparator;
  */
 public class ComparateurClassementPays implements Comparator<Pays>{
 
-
+    /**
+     * @return un int indiquant si p1 est plus grand que p2.
+     */
+    @Override
     public int compare(Pays p1, Pays p2){
         int res = p1.nbMedailleOr() - p2.nbMedailleOr();
 
