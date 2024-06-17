@@ -33,4 +33,9 @@ public class Athletisme extends Sport{
     public double methodeCalculePerf(double score){
         return (1600-score*1.5)*(this.getDistance()/100);
     }
+
+    @Override
+    public Participant methodeCalculeVainqueur(Participant participantA, Participant participantB, Epreuve epreuve){
+        return null;
+    }
 }

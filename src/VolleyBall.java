@@ -17,7 +17,8 @@ public class VolleyBall extends Sport {
      * @param scoreB score de l'équipe B
      * @return Une liste contenant les points de l'équipe A et de l'équpe B.
      */
-    public Equipe methodeCalculeVainqueur(Equipe participantA, Equipe participantB, Epreuve epreuve){
+    @Override
+    public Participant methodeCalculeVainqueur(Participant participantA, Participant participantB, Epreuve epreuve){
         double scoreA = epreuve.calculeResultatEquipe(participantA);
         double scoreB = epreuve.calculeResultatEquipe(participantB);
         Random rand = new Random();
@@ -36,5 +37,10 @@ public class VolleyBall extends Sport {
             return participantB;
         }
         return null;
+    }
+
+    @Override
+    public double methodeCalculePerf(double score){
+        return score;
     }
 }

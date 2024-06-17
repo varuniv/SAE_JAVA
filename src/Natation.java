@@ -27,8 +27,14 @@ public class Natation extends Sport {
      * @param score score du nageur ou de l'équipe 
      * @return renvoie un temps pour le nageur ou de l'équipe en fonction de leur score.
      */
+    @Override
     public double methodeCalculePerf(double score){
         return (800-score)*(this.getDistance()/100);
+    }
+
+    @Override
+    public Participant methodeCalculeVainqueur(Participant participantA, Participant participantB, Epreuve epreuve){
+        return null;
     }
 
     @Override

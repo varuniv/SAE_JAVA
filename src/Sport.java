@@ -68,10 +68,7 @@ public abstract class Sport {
         return res;
     }
 
-    public Participant methodeCalculeVainqueur(Participant participent1,Participant participant, Epreuve epreuve ){
-        return null;
-    }
-    public double methodeCalculePerf(double score){
-        return 0;
-    }
+    public abstract Participant methodeCalculeVainqueur(Participant participent1,Participant participant, Epreuve epreuve );
+
+    public abstract double methodeCalculePerf(double score);
 }

@@ -30,7 +30,8 @@ public class Escrime extends Sport{
         return res;
     }
     
-    public Athlete methodeCalculeVainqueur(Athlete athleteA, Athlete athleteB, Epreuve epreuve){
+    @Override
+    public Participant methodeCalculeVainqueur(Participant athleteA, Participant athleteB, Epreuve epreuve){
         double scoreA = epreuve.calculeResultat(athleteA);
         double scoreB = epreuve.calculeResultat(athleteB);
         Random rand = new Random();
@@ -49,6 +50,11 @@ public class Escrime extends Sport{
             return athleteB;
         }
         return null;
+    }
+
+    @Override
+    public double methodeCalculePerf(double score){
+        return score;
     }
 }
 

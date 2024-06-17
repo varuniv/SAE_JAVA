@@ -12,7 +12,9 @@ public class Handball extends Sport{
         super(nom, collectif, nbJoueur);
     }
     
-    public Equipe methodeCalculeVainqueur(Equipe equipeA, Equipe equipeB, Epreuve epreuve){
+
+    @Override
+    public Participant methodeCalculeVainqueur(Participant equipeA, Participant equipeB, Epreuve epreuve){
         double scoreA = epreuve.calculeResultatEquipe(equipeA);
         double scoreB = epreuve.calculeResultatEquipe(equipeB);
         Random rand = new Random();
@@ -32,5 +34,10 @@ public class Handball extends Sport{
             return equipeB;
         }
         return null;
+    }
+
+    @Override
+    public double methodeCalculePerf(double score){
+        return score;
     }
 }

@@ -138,7 +138,8 @@ public class Epreuve implements MeilleurAthlete{
      * @param athlete Un Athlete
      * @return Le resultat en stat d'un athlete dans une epreuve (le max étant 200)
      */
-    public double calculeResultat(Athlete athlete){
+    public double calculeResultat(Participant participant){
+        Athlete athlete = (Athlete) participant;
         Random random = new Random();
         double randomDouble = 1.0 + (50.0 - 1.0) * random.nextDouble();
         double res = athlete.getForce()*this.critereForce + athlete.getEndurance()*this.critereEndurance + athlete.getAgilite()+this.critereAgilite+ randomDouble;
@@ -149,12 +150,13 @@ public class Epreuve implements MeilleurAthlete{
      * @param equipe Une Equipe
      * @return Le resultat en stat d'une equipe dans une epreuve (le max étant 200)
      */
-    public double calculeResultatEquipe(Equipe equipe){
+    public double calculeResultatEquipe(Participant equipe){
         double res = 0;
-        for(Athlete athlete : equipe.getMembres()){
+        Equipe particip = (Equipe) equipe;
+        for(Athlete athlete : particip.getMembres()){
             res += calculeResultat(athlete);
         }
-        return res/equipe.getMembres().size();
+        return res/particip.getMembres().size();
     }
 
     /**
