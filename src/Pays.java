@@ -115,5 +115,14 @@ public class Pays implements MeilleurAthlete {
         return goat;
     }
 
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){return true;}
+        if(o == null){return false;}
+        if(!(o instanceof Pays)){return false;}
+        Pays tmp = (Pays) o;
+        return tmp.getNom().equals(this.getNom()) && tmp.getAthletes().equals(this.getAthletes());
+    }
     
 }

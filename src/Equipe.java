@@ -10,6 +10,7 @@ public class Equipe implements Participant{
     private List<Athlete> membres;
     private static boolean estPrete = false; 
     private Pays pays;
+    private String genre;
 
     /**
      * @param nomEquipe  nom de l'équipe
@@ -17,13 +18,14 @@ public class Equipe implements Participant{
      * @param placement son classement dans son épreuve
      * @param participee si elle peut participer ou pas à une épreuve en fonction de son nombre d'athlètes.
      */
-    public Equipe(String nomEquipe, Epreuve epreuve, int placement, boolean participee, Pays pays){
+    public Equipe(String nomEquipe, Epreuve epreuve, int placement, boolean participee, Pays pays, String genre){
         this.nomEquipe = nomEquipe;
         this.epreuve = epreuve;
         this.placement = placement;
         this.participee = participee;
         this.membres = new ArrayList<>();
         this.pays = pays;
+        this.genre = genre;
     }
 
     public Equipe(String nomEquipe) {
@@ -119,15 +121,19 @@ public class Equipe implements Participant{
     public Pays getPays(){
         return this.pays;
     }
+
+    public String getGenre(){
+        return this.genre;
+    }
     
     /**
      * @param athlete un Athlete
      */
-    public void ajouteMembre( Athlete athlete) throws PasDansCePaysException{
-        if(athlete.getPays().equals(this.getPays()))
+    public void ajouteMembre( Athlete athlete) throws MauvaiseEquipeException{
+        if(athlete.getPays().equals(this.getPays()) && athlete.getSexe().equals(this.getGenre()))
             this.membres.add(athlete);
         else{
-            throw new PasDansCePaysException();
+            throw new MauvaiseEquipeException();
         }
     }
     
