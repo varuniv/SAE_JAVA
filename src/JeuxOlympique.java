@@ -49,10 +49,12 @@ public class JeuxOlympique  {
         return this.nom;
     }
 
+    /**
+     *@return la liste des pays triée par médaille  
+     */
     public List<Pays> ClassementPays(){
         List<Pays> tmp = new ArrayList<>(); tmp.addAll(this.getPays());
         tmp.sort(new ComparateurClassementPays());
         return tmp;
-       
     }
 }

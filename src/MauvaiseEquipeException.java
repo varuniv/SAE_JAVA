@@ -1,3 +1,1 @@
-public class MauvaiseEquipeException extends Exception{
-    
-}
+public class MauvaiseEquipeException extends Exception{}

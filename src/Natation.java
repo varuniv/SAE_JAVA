@@ -32,6 +32,9 @@ public class Natation extends Sport {
         return (800-score)*(this.getDistance()/100);
     }
 
+    /**
+     * @return rien car c'est un sport demandant des performance et non des matchs.
+     */
     @Override
     public Participant methodeCalculeVainqueur(Participant participantA, Participant participantB, Epreuve epreuve){
         return null;

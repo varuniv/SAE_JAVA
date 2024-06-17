@@ -12,10 +12,16 @@ public class Athletisme extends Sport{
         this.distance = distance;
     }
 
+    /**
+     * @return la distance que doit courrir l'athlete
+     */
     public int getDistance() {
         return this.distance;
     }
 
+    /**
+     * @return la manière d'afficher le sport.
+     */
     @Override
     public String toString(){
         String estCollectif = "Oui";
@@ -34,6 +40,9 @@ public class Athletisme extends Sport{
         return (1600-score*1.5)*(this.getDistance()/100);
     }
 
+    /**
+     * @return rien car c'est un sport demandant des performance et non des matchs.
+     */
     @Override
     public Participant methodeCalculeVainqueur(Participant participantA, Participant participantB, Epreuve epreuve){
         return null;

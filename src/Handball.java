@@ -36,6 +36,9 @@ public class Handball extends Sport{
         return null;
     }
 
+    /**
+     * @return le score mis en paramètre car c'est un sport opposant 2 parties et non de performances individuelles.
+     */
     @Override
     public double methodeCalculePerf(double score){
         return score;
