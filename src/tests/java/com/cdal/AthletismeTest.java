@@ -2,7 +2,7 @@ package tests.java.com.cdal;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import main.java.com.cdal.Athletisme;
+import main.java.com.cdal.Modèle.*;
 
 public class AthletismeTest {
 
