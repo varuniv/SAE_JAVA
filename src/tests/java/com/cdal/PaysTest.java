@@ -4,8 +4,7 @@ package tests.java.com.cdal;
 
 import org.junit.Test;
 
-import main.java.com.cdal.Athlete;
-import main.java.com.cdal.Pays;
+import main.java.com.cdal.Modèle.*;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +17,7 @@ public class PaysTest {
     }
 
     @Test
-    public void testAjouteAthlete() {
+    public void testAjouteAthlete() throws PasUnSexeException {
         Pays pays = new Pays("France");
         Athlete athlete1 = new Athlete("Doe", "John", "M", 10, 15, 20, pays, 1);
         Athlete athlete2 = new Athlete("Smith", "Jane", "F", 12, 18, 16, pays, 2);
@@ -32,7 +31,7 @@ public class PaysTest {
     }
 
     @Test
-    public void testNbMedailleOr() {
+    public void testNbMedailleOr() throws PasUnSexeException {
         Pays pays = new Pays("France");
         Athlete athlete1 = new Athlete("Doe", "John", "M", 10, 15, 20, pays, 1);
         Athlete athlete2 = new Athlete("Smith", "Jane", "F", 12, 18, 16, pays, 2);
@@ -48,7 +47,7 @@ public class PaysTest {
     }
 
     @Test
-    public void testNbMedailleArgent() {
+    public void testNbMedailleArgent() throws PasUnSexeException {
         Pays pays = new Pays("France");
         Athlete athlete1 = new Athlete("Doe", "John", "M", 10, 15, 20, pays, 1);
         Athlete athlete2 = new Athlete("Smith", "Jane", "F", 12, 18, 16, pays, 2);
@@ -64,7 +63,7 @@ public class PaysTest {
     }
 
     @Test
-    public void testNbMedailleBronze() {
+    public void testNbMedailleBronze() throws PasUnSexeException {
         Pays pays = new Pays("France");
         Athlete athlete1 = new Athlete("Doe", "John", "M", 10, 15, 20, pays, 1);
         Athlete athlete2 = new Athlete("Smith", "Jane", "F", 12, 18, 16, pays, 2);
@@ -80,7 +79,7 @@ public class PaysTest {
     }
 
     @Test
-    public void testNbMedaillesTotales() {
+    public void testNbMedaillesTotales() throws PasUnSexeException {
         Pays pays = new Pays("France");
         Athlete athlete1 = new Athlete("Doe", "John", "M", 10, 15, 20, pays, 1);
         Athlete athlete2 = new Athlete("Smith", "Jane", "F", 12, 18, 16, pays, 2);
@@ -96,7 +95,7 @@ public class PaysTest {
     }
 
     @Test
-    public void testMeilleurAthlete() {
+    public void testMeilleurAthlete() throws PasUnSexeException {
         Pays pays = new Pays("France");
         Athlete athlete1 = new Athlete("Doe", "John", "M", 10, 15, 20, pays, 1);
         Athlete athlete2 = new Athlete("Smith", "Jane", "F", 12, 18, 16, pays, 2);

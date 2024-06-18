@@ -87,8 +87,8 @@ public class AthleteTest {
     }
 
     @Test
-    public void testAjouteEpreuve() {
-        Epreuve epreuve = new Epreuve("100m",null,null,false,4.1,1.9,1.5);
+    public void testAjouteEpreuve() throws PasUnSexeException {
+        Epreuve epreuve = new Epreuve("100m",null,null,4.1,1.9,1.5,0);
         athlete.ajouteEpreuve(epreuve);
         List<Epreuve> epreuves = athlete.getEpreuves();
         assertEquals(1, epreuves.size());
@@ -97,9 +97,9 @@ public class AthleteTest {
 
   
     @Test
-    public void testParticiper() {
-        VolleyBall volleyBall = new VolleyBall("VolleyBall", true, 6);
-        Epreuve epr1 = new Epreuve("VolleyBall", volleyBall, "M", true, 3.5, 1.5, 2.5);
+    public void testParticiper() throws PasUnSexeException {
+        VolleyBall volleyBall = new VolleyBall("VolleyBall", 6);
+        Epreuve epr1 = new Epreuve("VolleyBall", volleyBall, "M",  3.5, 1.5, 2.5,0);
         Competition competition = new Competition(epr1);
         assertTrue(athlete.participer(competition));
         assertTrue(athlete.getParticipeACompetition());

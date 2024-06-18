@@ -110,6 +110,11 @@ public class Athlete implements Participant, Medaille{
     public int getId(){
         return this.id;
     }
+    
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * @return le nom de l'athlète

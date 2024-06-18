@@ -97,8 +97,8 @@ public class Pays implements MeilleurAthlete {
      */
     @Override
     public String toString(){
-        return this.getNom() + " possede " + this.nbMedaillesTotales() +
-        " dont " +this.nbMedailleOr() + " médailles d'or " + this.nbMedailleArgent() + " médailles d'argent " + this.nbMedailleBronze() + " médailles de bronze" ;
+        return this.getNom() + " possede " + this.nbMedaillesTotales() + " médailles " + "dont : \n"
+        +this.nbMedailleOr() + " médailles d'or " + this.nbMedailleArgent() + " médailles d'argent " + this.nbMedailleBronze() + " médailles de bronze" ;
     }
 
     /**
@@ -143,7 +143,7 @@ public class Pays implements MeilleurAthlete {
         if(o == null){return false;}
         if(!(o instanceof Pays)){return false;}
         Pays tmp = (Pays) o;
-        return tmp.getNom().equals(this.getNom()) && tmp.getAthletes().equals(this.getAthletes());
+        return tmp.getNom().equals(this.getNom()) && tmp.getAthletes().equals(this.getAthletes()) && tmp.getEquipes().equals(this.getEquipes());
     }
     
 }

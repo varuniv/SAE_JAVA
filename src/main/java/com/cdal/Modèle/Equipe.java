@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Equipe implements Participant{
-
+    private int id;
     private String nomEquipe;
     private boolean participee;
     private Epreuve epreuve;
@@ -20,13 +20,14 @@ public class Equipe implements Participant{
      * @param pays le pays de l'équipe
      * @param genre le genre de l'équipe ("M" ou "F")
      */
-    public Equipe(String nomEquipe, Epreuve epreuve, Pays pays, String genre) throws PasCollectifException, PasUnSexeException{
+    public Equipe(String nomEquipe, Epreuve epreuve, Pays pays, String genre,int id) throws PasCollectifException, PasUnSexeException{
         if(epreuve.estEnEquipe()){
         this.nomEquipe = nomEquipe;
         this.epreuve = epreuve;
         this.participee = false;
         this.membres = new ArrayList<>();
         this.pays = pays;
+        this.id = id;
         if(genre.equals("M") || genre.equals("F")){this.genre = genre;}
         else{throw new PasUnSexeException();}
         }
@@ -100,7 +101,15 @@ public class Equipe implements Participant{
     public String getGenre(){
         return this.genre;
     }
-    
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * @param athlete un Athlete
      */

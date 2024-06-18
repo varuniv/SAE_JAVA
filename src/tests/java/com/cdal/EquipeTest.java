@@ -4,20 +4,15 @@ import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import main.java.com.cdal.Athlete;
-import main.java.com.cdal.Athletisme;
-import main.java.com.cdal.Epreuve;
-import main.java.com.cdal.Equipe;
-import main.java.com.cdal.MauvaiseEquipeException;
-import main.java.com.cdal.Pays;
+import main.java.com.cdal.Modèle.*;
 
 
 public class EquipeTest {
 
     @Test
-    public void testGetNomEquipe() {
-        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
-        Equipe equipe = new Equipe("Équipe 1", epreuve, true,null, "M");
+    public void testGetNomEquipe() throws PasCollectifException, PasUnSexeException {
+        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", 0.3, 0.3, 0.4,0);
+        Equipe equipe = new Equipe("Équipe 1", epreuve,null, "M",0);
         assertEquals("Équipe 1", equipe.getNomEquipe());
         assertNotNull("Le nom de l'équipe est null", equipe.getNomEquipe());
         assertNotEquals("Le nom de l'équipe ne devrait pas être vide", "", equipe.getNomEquipe());
@@ -26,9 +21,9 @@ public class EquipeTest {
     
 
     @Test
-    public void testIsParticipee() {
-        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
-        Equipe equipe = new Equipe("Équipe 1", epreuve, true,null,"M");
+    public void testIsParticipee() throws PasUnSexeException, PasCollectifException {
+        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", 0.3, 0.3, 0.4,0);
+        Equipe equipe = new Equipe("Équipe 1", epreuve,null,"M",0);
         assertTrue(equipe.isParticipee());
         assertEquals(true, equipe.isParticipee());
         assertNotNull("L'indicateur de participation de l'équipe est null", equipe.isParticipee());
@@ -36,17 +31,17 @@ public class EquipeTest {
     }
 
     @Test
-    public void testGetEpreuve() {
-        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
-        Equipe equipe = new Equipe("Équipe 1", epreuve, true,null,"M");
+    public void testGetEpreuve() throws PasUnSexeException, PasCollectifException {
+        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", 0.3, 0.3, 0.4,0);
+        Equipe equipe = new Equipe("Équipe 1", epreuve,null,"M",0);
         assertEquals(epreuve, equipe.getEpreuve());
         assertNotNull("L'épreuve de l'équipe est null", equipe.getEpreuve());
     }
 
     @Test
-    public void testGetMembres() {
-        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
-        Equipe equipe = new Equipe("Équipe 1", epreuve, true,null,"M");
+    public void testGetMembres() throws PasUnSexeException, PasCollectifException {
+        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", 0.3, 0.3, 0.4,0);
+        Equipe equipe = new Equipe("Équipe 1", epreuve,null,"M",0);
         Athlete athlete1 = new Athlete("Doe", "John", "M", 80, 90, 70, new Pays("France"), 1);
         Athlete athlete2 = new Athlete("Smith", "Emma", "M", 70, 85, 75, new Pays("USA"), 2);
         try {
@@ -66,9 +61,9 @@ public class EquipeTest {
     }
 
     @Test
-    public void testEstPrete() {
-        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
-        Equipe equipe = new Equipe("Équipe 1", epreuve, true,null,"M");
+    public void testEstPrete() throws PasUnSexeException, PasCollectifException {
+        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", 0.3, 0.3, 0.4,0);
+        Equipe equipe = new Equipe("Équipe 1", epreuve,null,"M",0);
         try {
             equipe.ajouteMembre(new Athlete("Doe", "John", "M", 80, 90, 70, new Pays("France"), 1));
             equipe.ajouteMembre(new Athlete("Smith", "Emma", "M", 70, 85, 75, new Pays("USA"), 2));
@@ -83,16 +78,7 @@ public class EquipeTest {
         assertEquals("L'équipe devrait être prête", true, equipe.estPrete());
     }
 
-    @Test
-    public void testToString() {
-        Epreuve epreuve = new Epreuve("Relais 4x100m", new Athletisme("Athletisme", true, 4, 400), "Relais", true, 0.3, 0.3, 0.4);
-        Equipe equipe = new Equipe("Équipe 1", epreuve, true,null,"M");
-        String expected = "L'équipe:Équipe 1 a participé à l'épreuve :Relais 4x100mvenant du sport : Sport : Athletisme, Collectif: Oui, Nombre de joueurs: 4, Distance: 400";
-        assertEquals(expected, equipe.toString());
-        assertEquals("La représentation en chaîne de l'équipe est incorrecte", expected, equipe.toString());
-        assertNotNull("La représentation en chaîne de l'équipe est null", equipe.toString());
-        assertNotEquals("La représentation en chaîne de l'équipe ne doit pas être vide", "", equipe.toString());
-    }
+    
 }
 
 

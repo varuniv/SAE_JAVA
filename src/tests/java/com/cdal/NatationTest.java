@@ -3,10 +3,7 @@ package tests.java.com.cdal;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import main.java.com.cdal.Athlete;
-import main.java.com.cdal.Epreuve;
-import main.java.com.cdal.Natation;
-import main.java.com.cdal.Pays;
+import main.java.com.cdal.Modèle.*;
 
 public class NatationTest {
 
@@ -17,11 +14,11 @@ public class NatationTest {
     }
 
     @Test
-    public void testMethodeCalcule() {
+    public void testMethodeCalcule() throws PasUnSexeException {
         Natation natation = new Natation("Natation", true, 1, 100);
         Pays france = new Pays("France");
         Athlete a1 = new Athlete("Dupond","Jean","Homme",20,20,20, france, 1);
-        Epreuve epr1 = new Epreuve("100m brasse", natation, "M", false, 4.1, 1.9, 1.5);
+        Epreuve epr1 = new Epreuve("100m brasse", natation, "M", 4.1, 1.9, 1.5,0);
         double score = epr1.calculeResultat(a1);
         double expectedTime = (800 - score) * (natation.getDistance() / 100);
         assertEquals(expectedTime, natation.methodeCalculePerf(score), 0.001);

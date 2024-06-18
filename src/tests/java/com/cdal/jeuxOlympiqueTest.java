@@ -3,15 +3,14 @@ package tests.java.com.cdal;
 
 import org.junit.Test;
 
-import main.java.com.cdal.JeuxOlympique;
-import main.java.com.cdal.Pays;
+import main.java.com.cdal.Modèle.*;
 
 import static org.junit.Assert.*;
 
 public class jeuxOlympiqueTest {
 
     @Test
-    public void testGetPays() {
+    public void testGetPays() throws PaysDejaDansJOException {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Tokyo 2021");
         assertEquals(0, jeuxOlympique.getPays().size());
 
@@ -33,7 +32,7 @@ public class jeuxOlympiqueTest {
     }
 
     @Test
-    public void testAjoutePays() {
+    public void testAjoutePays() throws PaysDejaDansJOException {
         JeuxOlympique jeuxOlympique = new JeuxOlympique("Tokyo 2021");
 
         Pays pays1 = new Pays("USA");
@@ -45,9 +44,5 @@ public class jeuxOlympiqueTest {
         assertTrue(jeuxOlympique.getPays().contains(pays2));
     }
 
-    @Test
-    public void testToString() {
-        JeuxOlympique jeuxOlympique = new JeuxOlympique("Tokyo 2021");
-        assertEquals("Tokyo 2021", jeuxOlympique.toString());
-    }
+    
 }

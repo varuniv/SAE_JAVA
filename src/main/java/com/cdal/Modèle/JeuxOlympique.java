@@ -51,7 +51,12 @@ public class JeuxOlympique  {
      */
     @Override
     public String toString() {
-        return this.nom;
+        String res = "\n" + this.getNom() +"\n";
+        res = res + "Les Pays qui participent sont : \n" ; 
+        for (Pays pays : this.getPays()) {
+            res = res + pays.getNom() + "\n";
+        } 
+        return res;
     }
 
     /**

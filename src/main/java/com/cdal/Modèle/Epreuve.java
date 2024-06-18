@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Epreuve implements MeilleurAthlete{
+    private int id;
     private List<Equipe> equipes;
     private List<Athlete> athletes;
     private String nom;
@@ -24,7 +25,8 @@ public class Epreuve implements MeilleurAthlete{
      * @param agilite
      * @param endurance
      */
-    public Epreuve( String nom, Sport sport, String categorie, double force, double agilite, double endurance)throws PasUnSexeException{
+    public Epreuve( String nom, Sport sport, String categorie, double force, double agilite, double endurance,int id)throws PasUnSexeException{
+        this.id = id;
         this.nom = nom;
         this.sport = sport;
         if (categorie.equals("M") || categorie.equals("F")){this.categorie = categorie;}
@@ -69,7 +71,7 @@ public class Epreuve implements MeilleurAthlete{
      * @return la liste des athlètes participants à l'épreuve
      */
     public List<Athlete> getAthletes() {
-        return athletes;
+        return this.athletes;
     }
 
     /**
@@ -122,7 +124,7 @@ public class Epreuve implements MeilleurAthlete{
      * @return le sport correspondant à l'épreuve
      */
     public Sport getSport() {
-        return sport;
+        return this.sport;
     }
 
     /**
@@ -130,6 +132,14 @@ public class Epreuve implements MeilleurAthlete{
      */
     public void setSport(Sport sport) {
         this.sport = sport;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
