@@ -1,5 +1,5 @@
 package main.java.com.cdal.Modèle;
-import main.java.com.cdal.Modèle.*;
+
 
 public class ExecutableOlympique {
     public static void main(String[] args) throws PasUnSexeException, PaysDejaDansJOException {
