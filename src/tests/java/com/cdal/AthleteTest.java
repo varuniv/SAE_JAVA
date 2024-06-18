@@ -7,11 +7,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.com.cdal.Athlete;
-import main.java.com.cdal.Competition;
-import main.java.com.cdal.Epreuve;
-import main.java.com.cdal.Pays;
-import main.java.com.cdal.VolleyBall;
+import main.java.com.cdal.Modèle.*;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +18,7 @@ public class AthleteTest {
     private Athlete athlete;
 
     @Before
-    public void setUp() {
+    public void setUp() throws PasUnSexeException {
         athlete = new Athlete("Doe", "John", "M", 15.0, 10.0, 12.0, new Pays("France"), 1);
     }
 

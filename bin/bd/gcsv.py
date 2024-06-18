@@ -17,6 +17,9 @@ prenoms_ma = ["Youssef", "Aya", "Imane", "Mehdi", "Nour", "Hamza", "Fatima", "Ay
 sexes = ["M", "F"]
 pays = ["USA", "Chine", "Japon", "Kenya", "France", "Maroc", "Allemagne", "Australie", "Brésil", "Turquie"]
 epreuves = ["Natation 100 brasse", "Natation relais libre", "Handball", "Volley-Ball", "Escrime fleuret", "Escrime épée", "Athétisme 110 haies", "Athlétisme relais 400m"]
+epreuves_individuelles = ["Natation 100 brasse", "Escrime fleuret", "Escrime épée", "Athétisme 110 haies"]
+sports_avec_attributs = {"Natation 100 brasse":100, "Natation relais libre":4*100, "Athlétisme 110 haies":110, "Athlétisme relais 400m":400, "Escrime fleuret":"fleuret", "Escrime épée":"épée"}
+noms_equipes = ["Equipe A", "Equipe B", "Equipe C", "Equipe D"]
 
 # Génération des enregistrements
 records = []
@@ -33,18 +36,27 @@ for _ in range(400):
     else:
         nom = random.choice(noms_de)
         prenom = random.choice(prenoms_de)
+    equipe=random.choice(noms_equipes)
     sexe = random.choice(sexes)
     pays_choice = random.choice(pays)
     epreuve = random.choice(epreuves)
     force = random.randint(1, 20)
     endurance = random.randint(1, 20)
     agilite = random.randint(1, 20)
-    records.append([nom, prenom, sexe, pays_choice, epreuve, force,endurance, agilite])
+    forceE = random.randint(1, 20)
+    enduranceE = random.randint(1, 20)
+    agiliteE = random.randint(1, 20)
+    enEquipe=True
+    attribut_sport="None"
+    if(epreuve in sports_avec_attributs):
+        attribut_sport=str(sports_avec_attributs[epreuve])
+    if(epreuve in epreuves_individuelles):
+        enEquipe=False
+    records.append([nom, prenom, sexe, pays_choice, epreuve, force,endurance, agilite, enEquipe, forceE, enduranceE, agiliteE, attribut_sport, equipe])
 
 # Écriture des données dans un fichier CSV
 with open('donnees.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
-    # Écriture des enregistrements
     writer.writerows(records)
 
 print("Fichier CSV généré avec succès.")
