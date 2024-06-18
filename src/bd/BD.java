@@ -1,4 +1,5 @@
-package bd;
+
+import classes.src.*;
 
 import java.sql.*;
 import java.io.*;
@@ -42,11 +43,11 @@ public class BD {
             String epreuveQueryHommes = "insert into EPREUVE(idEpreuve, nomEpreuve, categorie, enEquipe, critereForce, critereAgilite, critereEndurance, attributSport) VALUES (" + this.idEpreuve + ", '" + sport + "','" + categorieH + "', " + enEquipe + ", " + forceEpreuve + ", " + agiliteEpreuve + ", " + enduranceEpreuve + ", '" + attributSport + "')";
             this.st.executeUpdate(epreuveQueryHommes);
 
-            this.idEpreuve++;  // Increment ID here after the first insert
+            this.idEpreuve++;
 
             String epreuveQueryFemmes = "insert into EPREUVE(idEpreuve, nomEpreuve, categorie, enEquipe, critereForce, critereAgilite, critereEndurance, attributSport) VALUES (" + this.idEpreuve + ", '" + sport + "','" + categorieF + "', " + enEquipe + ", " + forceEpreuve + ", " + agiliteEpreuve + ", " + enduranceEpreuve + ", '" + attributSport + "')";
             this.st.executeUpdate(epreuveQueryFemmes);
-            this.idEpreuve++;  // Increment ID again after the second insert
+            this.idEpreuve++;
         }
     }
 
@@ -242,5 +243,45 @@ public class BD {
         epreuve+="Id de l'épreuve: "+idE+"\nNom de l'épreuve: "+nomEpreuve+"\nCatégorie: "+categorie+"\n"+estEnEquipe+"\nCritère Force: "+critereForce+"\nCritère Endurance: "+critereEndurance+"\nCritère Agilité: "+critereAgilite+"\n"+infosDuSport+""+attrSport+"\n";
         return epreuve;
     }
-    
+
+    public void majAthlete(Athlete athlete) throws SQLException {
+    int idA = athlete.getId();
+    String prenomA = athlete.getPrenom();
+    String nomA = athlete.getNom();
+    String sexeA = athlete.getSexe();
+    double forceA = athlete.getForce();
+    double agiliteA = athlete.getAgilite();
+    double enduranceA = athlete.getEndurance();
+
+    // Use try-with-resources to ensure resources are closed properly
+    String selectQuery = "SELECT idPays, idEquipe FROM ATHLETE WHERE idAthlete = ?";
+    String updateQuery = "UPDATE ATHLETE SET prenom = ?, nom = ?, sexe = ?, force_ = ?, agilite = ?, endurance = ?, idPays = ?, idEquipe = ? WHERE idAthlete = ?";
+
+    try (PreparedStatement selectStmt = this.laConnexion.prepareStatement(selectQuery);
+         PreparedStatement updateStmt = this.laConnexion.prepareStatement(updateQuery)) {
+
+        selectStmt.setInt(1, idA);
+        try (ResultSet rs = selectStmt.executeQuery()) {
+            if (rs.next()) {
+                int idP = rs.getInt("idPays");
+                int idE = rs.getInt("idEquipe");
+
+                updateStmt.setString(1, prenomA);
+                updateStmt.setString(2, nomA);
+                updateStmt.setString(3, sexeA);
+                updateStmt.setDouble(4, forceA);
+                updateStmt.setDouble(5, agiliteA);
+                updateStmt.setDouble(6, enduranceA);
+                updateStmt.setInt(7, idP);
+                updateStmt.setInt(8, idE);
+                updateStmt.setInt(9, idA);
+
+                updateStmt.executeUpdate();
+            System.out.println("Update réalisé avec succès");
+            } else {
+                throw new SQLException("Athlete with id " + idA + " not found.");
+            }
+        }
+    }
+}  
 }

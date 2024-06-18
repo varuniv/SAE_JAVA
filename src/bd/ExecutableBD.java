@@ -1,27 +1,33 @@
-package bd;
 
-
+import classes.src.*;
 public class ExecutableBD {
     public static void main(String[] args) {
         try {
-            // Create a new instance of ConnexionMySQL
+            
             ConnexionMySQL connexion = new ConnexionMySQL();
-            // Connect to the database with appropriate parameters
+            // Connexion à la BD
             connexion.connecter("servinfo-maria", "DBguihard", "guihard", "guihard");
-            // Check if connection is successful before proceeding
-            if (connexion.isConnecte()) {
-                // If connected, create an instance of BD and execute csvToSQL method
+            // Check la connexion
+            if(connexion.isConnecte()){
                 BD bd = new BD(connexion);
                 bd.csvToSQL("../donnees.csv");
-            } else {
+                System.out.println(bd.selectAthleteFromId(2));
+                System.out.println(bd.selectPaysFromId(203));
+                System.out.println(bd.selectEquipeFromId(301));
+                System.out.println(bd.selectEpreuveFromId(107));
+
+                Pays malaisie = new Pays("Malaisie");
+                Athlete athlete = new Athlete("Zee", "Zaiini", "M", 12.0, 14.0, 15.0, malaisie, 3);
+                bd.majAthlete(athlete);
+            }
+            else{
                 System.err.println("Erreur: Connection not established.");
             }
-        } catch (Exception e) {
+            connexion.close();
+        }
+        catch (Exception e) {
             System.err.println("Erreur: " + e.getMessage());
             e.printStackTrace();
         }
     }
 }
-//Compiler et exécuter :
-//javac --source-path ./src -d ./bin --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls src/*.java
-//java -cp ./bin:/usr/share/java/mariadb-java-client.jar --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls ExecutableBD
