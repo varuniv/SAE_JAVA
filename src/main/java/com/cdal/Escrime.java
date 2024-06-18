@@ -26,12 +26,21 @@ public class Escrime extends Sport{
         return this.typeEpee;
     }
 
+    /**
+     * @return le string permettant de représenté Escrime
+     */
     @Override
     public String toString(){
         String res = this.getNom()+": "+this.getNbJoueur()+", Type de l'épée: "+this.typeEpee;
         return res;
     }
     
+    /**
+     * @param athleteA le premier athlete
+     * @param athleteB le deuxième athlete
+     * @param epreuve l'epreuve sur laquelle ils von-t s'affronter
+     * @return le vainqueur de l'affrontement entre les deux athletes.
+     */
     @Override
     public Participant methodeCalculeVainqueur(Participant athleteA, Participant athleteB, Epreuve epreuve){
         double scoreA = epreuve.calculeResultat(athleteA);
@@ -55,6 +64,7 @@ public class Escrime extends Sport{
     }
 
     /**
+     * @param score un score sans importance
      * @return le score mis en paramètre car c'est un sport opposant 2 parties et non de performances individuelles.
      */
     @Override

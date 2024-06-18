@@ -18,6 +18,9 @@ public class Athlete implements Participant, Medaille{
     private Pays pays;
     private Map<String,Integer> lesMedailles;
     private List<Epreuve> lesEpreuves;
+    private Equipe equipe;
+
+    
 
     /**
      * Constructeur de la classe Athlete
@@ -32,8 +35,10 @@ public class Athlete implements Participant, Medaille{
      * @param pays le pays de l'athlète
      * @param lesMedailles le dictionnaire des médailles de l'athlète
      * @param lesEpreuves les épreuves auxquelles participe l'athlète
+     * @param id l'id d'un athlete
+     * @param equipe l'equipe de l'athlete
      */
-    public Athlete(String nom, String prenom, String sexe, double force, double agilite, double endurance, Pays pays, int id){
+    public Athlete(String nom, String prenom, String sexe, double force, double agilite, double endurance,Equipe equipe  ,Pays pays, int id){
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -48,8 +53,49 @@ public class Athlete implements Participant, Medaille{
         this.lesMedailles.put("Or", 0);
         this.lesMedailles.put("Argent", 0);
         this.lesMedailles.put("Bronze", 0);
+        this.equipe = equipe;
+    }
+    /**
+     * Constructeur de la classe Athlete
+     * @param nom le nom de l'athlète
+     * @param prenom le prénom de l'athlète
+     * @param sexe le sexe de l'athlète F ou M
+     * @param force la valeur de la force de l'athlète entre 1 et 20
+     * @param agilite la valeur de l'agilité de l'athlète 1 et 20
+     * @param endurance la valeur de l'endurance de l'athlète 1 et 20
+     * @param participeALaCompetition si l'athlète participe à la compétition
+     * @param placement la position dans le classement de l'athlète
+     * @param pays le pays de l'athlète
+     * @param lesMedailles le dictionnaire des médailles de l'athlète
+     * @param lesEpreuves les épreuves auxquelles participe l'athlète
+     * @param id l'id d'un athlete
+     */
+    public Athlete(String nom, String prenom, String sexe, double force, double agilite, double endurance,Pays pays, int id){
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.force = force;
+        this.agilite = agilite;
+        this.endurance = endurance;
+        this.participeACompetition = false;
+        this.lesMedailles = new HashMap<>();
+        this.lesEpreuves = new ArrayList<>();
+        this.pays = pays;
+        this.lesMedailles.put("Or", 0);
+        this.lesMedailles.put("Argent", 0);
+        this.lesMedailles.put("Bronze", 0);
+        this.equipe = null;
     }
 
+
+    public Equipe getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
+    }
     /**
      * @return l'id de l'athlète
      */
@@ -176,12 +222,19 @@ public class Athlete implements Participant, Medaille{
         }
     }
 
+    /**
+     * @return un String représentant l'affichage d'un athlète
+     */
     @Override
     public String toString(){
         String res = this.nom+" "+this.prenom+": ["+this.nom+" "+this.prenom+" a une force de "+this.force+", une agilité de "+this.agilite+" et une endurance de "+this.endurance+". Il vient de "+this.pays.getNom()+". Dans le classement il est "+this.placement+" et a "+this.lesMedailles.get("Or")+" médailles d'or, "+this.lesMedailles.get("Argent")+" médailles d'argent et "+this.lesMedailles.get("Bronze")+" médailles de bronze]";
         return res;
     }
 
+    /**
+     * @param obj l'objet que l'on compare
+     * @return booleen de si l'objet est égal à cet athlète
+     */
     @Override
     public boolean equals(Object obj){
         if (this == obj){

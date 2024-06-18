@@ -5,9 +5,9 @@ public class Athletisme extends Sport{
 
     /**
      * @param nom
-     * @param collectif
-     * @param nbJoueur
-     * @param distance
+     * @param collectif si c'est un sport collectif
+     * @param nbJoueur nombre de joueur pour ce sport
+     * @param distance distance qu'un athlete doit courrir
      */
     public Athletisme(String nom, boolean collectif, int nbJoueur, int distance) {
         super(nom, collectif, nbJoueur);

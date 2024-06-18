@@ -7,6 +7,8 @@ import java.util.Comparator;
 public class ComparateurClassementPays implements Comparator<Pays>{
 
     /**
+     * @param p1 le premier pays a comparé
+     * @param p2 le deuxieme pays a comparé
      * @return un int indiquant si p1 est plus grand que p2.
      */
     @Override

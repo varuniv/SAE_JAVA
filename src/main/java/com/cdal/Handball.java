@@ -17,7 +17,7 @@ public class Handball extends Sport{
      * @param equipeA
      * @param equipeB
      * @param epreuve
-     * @return
+     * @return le vainqueure de l'affrontement entre A et B sur epreuve
      */
     @Override
     public Participant methodeCalculeVainqueur(Participant equipeA, Participant equipeB, Epreuve epreuve){
@@ -43,6 +43,7 @@ public class Handball extends Sport{
     }
 
     /**
+     * @param score score sans importance
      * @return le score mis en paramètre car c'est un sport opposant 2 parties et non de performances individuelles.
      */
     @Override

@@ -42,6 +42,9 @@ public class Natation extends Sport {
         return null;
     }
 
+    /**
+     * @return le string représentant Natation
+     */
     @Override
     public String toString(){
         String estCollectif = "Oui";
