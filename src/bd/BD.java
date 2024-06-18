@@ -181,4 +181,15 @@ public class BD {
         pays+="Pays: "+idP+", "+nomPays+"\n";
         return pays;
     }
+
+    public String selectEquipeFromId(int id) throws SQLException{
+        ResultSet rs = this.st.executeQuery("select * from EQUIPE where idEquipe="+id);
+        rs.next();
+        String equipe = "";
+        int idE = rs.getInt(1);
+        String nomE = rs.getString(2);
+        int idEp = rs.getInt(3);
+        equipe+="Equipe: "+idE+"\nNom de l'équipe: "+nomE+"\nId de leur épreuve: "+idEp;
+        return equipe;
+    }
 }
