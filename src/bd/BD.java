@@ -160,15 +160,25 @@ public class BD {
         int enduranceA = rs.getInt(7);
         ResultSet rs2 = this.st.executeQuery("select nomPays from PAYS where idPays="+rs.getInt(8));
         if (rs2.next()) {
-                String nomPays = rs2.getString(1);
+            String nomPays = rs2.getString(1);
         }
         String nomPays = rs2.getString(1);
         ResultSet rs3 = this.st.executeQuery("select nomEquipe from EQUIPE where idEquipe="+rs.getInt(9));
         if (rs3.next()) {
-                String nomEquipe = rs3.getString(1);
+            String nomEquipe = rs3.getString(1);
         }
         String nomEquipe = rs3.getString(1);
-        athlete+="Athlete: "+idA+", "+prenomA+" "+nomA+", Sexe: "+sexeA+"\nForce: "+forceA+"\nAgilité: "+agiliteA+"\nEndurance: "+enduranceA+"\nPays: "+nomPays+"\nEquipe: "+nomEquipe;
+        athlete+="Athlete: "+idA+", "+prenomA+" "+nomA+", Sexe: "+sexeA+"\nForce: "+forceA+"\nAgilité: "+agiliteA+"\nEndurance: "+enduranceA+"\nPays: "+nomPays+"\nEquipe: "+nomEquipe+"\n";
         return athlete;
+    }
+
+    public String selectPaysFromId(int id) throws SQLException{
+        ResultSet rs = this.st.executeQuery("select * from PAYS where idPays="+id);
+        rs.next();
+        String pays = "";
+        int idP = rs.getInt(1);
+        String nomPays = rs.getString(2);
+        pays+="Pays: "+idP+", "+nomPays+"\n";
+        return pays;
     }
 }
