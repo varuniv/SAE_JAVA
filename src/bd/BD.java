@@ -1,5 +1,6 @@
+package bd;
+import main.java.com.cdal.Modèle.*;
 
-import classes.src.*;
 
 import java.sql.*;
 import java.io.*;
