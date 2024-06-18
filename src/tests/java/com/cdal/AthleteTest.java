@@ -1,13 +1,16 @@
 package tests.java.com.cdal;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import main.java.com.cdal.Modèle.*;
+
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +20,7 @@ public class AthleteTest {
 
     private Athlete athlete;
 
-    @Before
+    @BeforeEach
     public void setUp() throws PasUnSexeException {
         athlete = new Athlete("Doe", "John", "M", 15.0, 10.0, 12.0, new Pays("France"), 1);
     }
