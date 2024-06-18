@@ -132,7 +132,7 @@ public class BD {
                 this.insertEquipe(sport, nomEquipe);
                 this.insertAthlete(nom, prenom, sexe, force, endurance, agilite, nomPays, nomEquipe);
             }
-            System.out.println("Inserts effectués avec succès");
+            System.out.println("Inserts effectués avec succès\n");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Error processing CSV file.");
@@ -144,7 +144,31 @@ public class BD {
                     e.printStackTrace();
                 }
             }
-            this.laConnexion.close();
         }
+    }
+
+    public String selectAthleteFromId(int id) throws SQLException{
+        ResultSet rs = this.st.executeQuery("select * from ATHLETE where idAthlete="+id);
+        rs.next();
+        String athlete = "";
+        int idA = rs.getInt(1);
+        String prenomA = rs.getString(2);
+        String nomA = rs.getString(3);
+        String sexeA = rs.getString(4);
+        int forceA = rs.getInt(5);
+        int agiliteA = rs.getInt(6);
+        int enduranceA = rs.getInt(7);
+        ResultSet rs2 = this.st.executeQuery("select nomPays from PAYS where idPays="+rs.getInt(8));
+        if (rs2.next()) {
+                String nomPays = rs2.getString(1);
+        }
+        String nomPays = rs2.getString(1);
+        ResultSet rs3 = this.st.executeQuery("select nomEquipe from EQUIPE where idEquipe="+rs.getInt(9));
+        if (rs3.next()) {
+                String nomEquipe = rs3.getString(1);
+        }
+        String nomEquipe = rs3.getString(1);
+        athlete+="Athlete: "+idA+", "+prenomA+" "+nomA+", Sexe: "+sexeA+"\nForce: "+forceA+"\nAgilité: "+agiliteA+"\nEndurance: "+enduranceA+"\nPays: "+nomPays+"\nEquipe: "+nomEquipe;
+        return athlete;
     }
 }
