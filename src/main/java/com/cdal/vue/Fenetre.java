@@ -60,7 +60,7 @@ public class Fenetre  extends Application {
         Platform.exit();
     }
     public static void main(String[] args){
-        // Permet d'instancier et de lancer l'application AppliDessin
+        // Permet d'instancier et de lancer l'application 
         launch(args);
     }
 }
