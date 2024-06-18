@@ -168,7 +168,7 @@ public class BD {
             String nomEquipe = rs3.getString(1);
         }
         String nomEquipe = rs3.getString(1);
-        athlete+="Athlete: "+idA+", "+prenomA+" "+nomA+", Sexe: "+sexeA+"\nForce: "+forceA+"\nAgilité: "+agiliteA+"\nEndurance: "+enduranceA+"\nPays: "+nomPays+"\nEquipe: "+nomEquipe+"\n";
+        athlete+="Id de l'athlete: "+idA+"\nPrénom: "+prenomA+"\nNom: "+nomA+"\nSexe: "+sexeA+"\nForce: "+forceA+"\nAgilité: "+agiliteA+"\nEndurance: "+enduranceA+"\nPays: "+nomPays+"\nEquipe: "+nomEquipe+"\n";
         return athlete;
     }
 
@@ -178,7 +178,7 @@ public class BD {
         String pays = "";
         int idP = rs.getInt(1);
         String nomPays = rs.getString(2);
-        pays+="Pays: "+idP+", "+nomPays+"\n";
+        pays+="Id du pays: "+idP+",\nNom du pays: "+nomPays+"\n";
         return pays;
     }
 
@@ -189,7 +189,56 @@ public class BD {
         int idE = rs.getInt(1);
         String nomE = rs.getString(2);
         int idEp = rs.getInt(3);
-        equipe+="Equipe: "+idE+"\nNom de l'équipe: "+nomE+"\nId de leur épreuve: "+idEp;
+        ResultSet rs2 = this.st.executeQuery("select nomEpreuve from EPREUVE where idEpreuve="+idEp);
+        rs2.next();
+        String nomEp = rs2.getString(1);
+        equipe+="Id de l'équipe: "+idE+"\nNom de l'équipe: "+nomE+"\nId de leur épreuve: "+idEp+"\nNom de l'épreuve: "+nomEp+"\n";
         return equipe;
     }
+
+    public String selectEpreuveFromId(int id) throws SQLException{
+        ResultSet rs = this.st.executeQuery("select * from EPREUVE where idEpreuve="+id);
+        rs.next();
+        String epreuve = "";
+        String estEnEquipe = "L'épreuve est en équipe";
+        String infosDuSport = "Ce sport a comme attribut: ";
+        
+        int idE = rs.getInt(1);
+        String nomEpreuve = rs.getString(2);
+        String categorie = rs.getString(3);
+        int enEquipe = rs.getInt(4);
+        double critereForce = rs.getDouble(5);
+        double critereAgilite = rs.getDouble(6);
+        double critereEndurance = rs.getDouble(7);
+        String attributSport = rs.getString(8);
+
+        Set<String> sportsDistances = new HashSet<>();
+        sportsDistances.add("Natation 100 brasse");
+        sportsDistances.add("Natation relais libre");
+        sportsDistances.add("Athlétisme 110 haies");
+        sportsDistances.add("Athlétisme relais 400m");
+        
+        Set<String> typeEpeesEscrime = new HashSet<>();
+        typeEpeesEscrime.add("Escrime fleuret");
+        typeEpeesEscrime.add("Escrime épée");
+
+        if (enEquipe == 0){
+            estEnEquipe = "L'épreuve n'est pas en équipe";
+        }
+        if(attributSport.equals("NULL")){
+            infosDuSport="Ce sport n'a pas d'attributs";
+            epreuve+="Epreuve: "+idE+"\nNom de l'épreuve: "+nomEpreuve+"\nCatégorie: "+categorie+"\n"+estEnEquipe+"\nCritère Force: "+critereForce+"\nCritère Endurance: "+critereEndurance+"\nCritère Agilité: "+critereAgilite+"\n"+infosDuSport+"\n";
+            return epreuve;
+        }
+        String attrSport="";
+        if(sportsDistances.contains(nomEpreuve)){
+            attrSport = attributSport+" mètres";
+        }
+        else{
+            attrSport = attributSport+"";
+        }
+        epreuve+="Id de l'épreuve: "+idE+"\nNom de l'épreuve: "+nomEpreuve+"\nCatégorie: "+categorie+"\n"+estEnEquipe+"\nCritère Force: "+critereForce+"\nCritère Endurance: "+critereEndurance+"\nCritère Agilité: "+critereAgilite+"\n"+infosDuSport+""+attrSport+"\n";
+        return epreuve;
+    }
+    
 }
