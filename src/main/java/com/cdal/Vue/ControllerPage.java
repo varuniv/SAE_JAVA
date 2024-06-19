@@ -1,12 +1,15 @@
-package main.java.com.cdal.Vue;
-
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
 
 public class ControllerPage implements EventHandler<ActionEvent>{
     private Appli appli;
@@ -59,8 +62,19 @@ public class ControllerPage implements EventHandler<ActionEvent>{
                 appli.pageConsultation();
             }
             else if (btn.getText().equals("Déconnexion")){
-                appli.pageDeConnexion();
+                // Show confirmation popup
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Déconnexion");
+                alert.setContentText("Êtes-vous sûr de vouloir vous déconnecter ?");
+                
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    appli.pageDeConnexion();
+                }
             }
+
+            
             else if (btn.getText().equals("Créer compétition")){
                 appli.pageCompetition();
             }
