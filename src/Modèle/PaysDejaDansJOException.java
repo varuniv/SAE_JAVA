@@ -1,0 +1,1 @@
+public class PaysDejaDansJOException extends Exception{}
