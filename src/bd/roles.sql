@@ -18,6 +18,3 @@ grant insert,select on DBguihard.ATHLETE to organisateur;
 --administrateur
 
 grant all on DBguihard.* to administrateur with grant option;
-
-
-create user toto identified by motPasse;
