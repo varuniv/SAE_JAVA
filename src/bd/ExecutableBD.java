@@ -1,5 +1,5 @@
+import src.main.java.com.cdal.Modèle.*;
 
-import classes.src.*;
 public class ExecutableBD {
     public static void main(String[] args) {
         try {

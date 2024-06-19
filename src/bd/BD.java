@@ -1,5 +1,5 @@
 
-import classes.src.*;
+import src.main.java.com.cdal.Modèle.*;
 
 import java.sql.*;
 import java.io.*;
