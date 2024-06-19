@@ -37,7 +37,6 @@ public class Appli extends Application {
 
 
     public void pageDeConnexion() throws Exception{
-        Appli.primaryStage = primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fenetres/PageDeConnexion.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Page de connexion");
@@ -53,7 +52,6 @@ public class Appli extends Application {
     
 
     public void pageInscription() throws Exception{
-        Appli.primaryStage = primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fenetres/Fenetre_inscription.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Page d'inscription");
@@ -67,7 +65,6 @@ public class Appli extends Application {
     }
     
     public void pageConsultation() throws Exception{
-        Appli.primaryStage = primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fenetres/FenetreConsultationClassement.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Page de Consultation");
@@ -81,7 +78,6 @@ public class Appli extends Application {
     }
 
     public void pageCompetition() throws Exception{
-        Appli.primaryStage = primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fenetres/Fenetre_Creation_Competition.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Création de Compétition");
