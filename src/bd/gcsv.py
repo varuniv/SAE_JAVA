@@ -36,7 +36,7 @@ for _ in range(400):
     else:
         nom = random.choice(noms_de)
         prenom = random.choice(prenoms_de)
-    equipe=random.choice(noms_equipes)
+    equipe="None"
     sexe = random.choice(sexes)
     pays_choice = random.choice(pays)
     epreuve = random.choice(epreuves)
@@ -52,6 +52,8 @@ for _ in range(400):
         attribut_sport=str(sports_avec_attributs[epreuve])
     if(epreuve in epreuves_individuelles):
         enEquipe=False
+    if(epreuve!="Escrime fleuret" and epreuve !="Escrime épée"):
+        equipe=random.choice(noms_equipes)
     records.append([nom, prenom, sexe, pays_choice, epreuve, force,endurance, agilite, enEquipe, forceE, enduranceE, agiliteE, attribut_sport, equipe])
 
 # Écriture des données dans un fichier CSV

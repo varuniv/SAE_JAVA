@@ -1,8 +1,5 @@
-package bd;
 
-import main.java.com.cdal.Modèle.*;
-
-
+import classes.src.*;
 public class ExecutableBD {
     public static void main(String[] args) {
         try {
@@ -13,15 +10,19 @@ public class ExecutableBD {
             // Check la connexion
             if(connexion.isConnecte()){
                 BD bd = new BD(connexion);
-                bd.csvToSQL("../donnees.csv");
-                System.out.println(bd.selectAthleteFromId(2));
-                System.out.println(bd.selectPaysFromId(203));
-                System.out.println(bd.selectEquipeFromId(301));
+                bd.csvToSQL("bd/donnees.csv");
+                System.out.println(bd.selectAthleteFromId(5));
+                System.out.println(bd.selectPaysFromNom("France"));
+                System.out.println(bd.selectEquipeFromId(201));
                 System.out.println(bd.selectEpreuveFromId(107));
 
                 Pays malaisie = new Pays("Malaisie");
-                Athlete athlete = new Athlete("Zee", "Zaiini", "M", 12.0, 14.0, 15.0, malaisie, 3);
+                Pays maroc = new Pays("Maroc");
+                Athlete athlete = new Athlete("Zee", "Zaiini", "M", 12.0, 14.0, 15.0, maroc, 3); //SANS EQUIPE
                 bd.majAthlete(athlete);
+                Handball handball = new Handball("Handball", 14);
+                Epreuve ep = new Epreuve("Handball", handball, "M", 15, 13, 2, 103);
+                bd.majEpreuve(ep);
             }
             else{
                 System.err.println("Erreur: Connection not established.");

@@ -2,6 +2,11 @@ DROP TABLE IF EXISTS ATHLETE;
 DROP TABLE IF EXISTS PAYS;
 DROP TABLE IF EXISTS EQUIPE;
 DROP TABLE IF EXISTS EPREUVE;
+DROP table IF EXISTS COMPETITION;
+
+create table COMPETITION(
+    nomCompet varchar(50);
+);
 
 CREATE TABLE EPREUVE(
     idEpreuve INT PRIMARY KEY,
@@ -11,7 +16,9 @@ CREATE TABLE EPREUVE(
     critereForce DECIMAL,
     critereAgilite DECIMAL,
     critereEndurance DECIMAL,
-    attributSport VARCHAR(20) -- Si le sport n'a pas d'attributs on initialise à NULL
+    attributSport VARCHAR(20), -- Si le sport n'a pas d'attributs on initialise à NULL
+    nomCompet varchar(50),
+    FOREIGN KEY (nomCompet) REFERENCES COMPETITION(nomCompet)
 );
 
 CREATE TABLE EQUIPE(
@@ -22,8 +29,7 @@ CREATE TABLE EQUIPE(
 );
 
 CREATE TABLE PAYS(
-    idPays INT PRIMARY KEY,
-    nomPays VARCHAR(15)
+    nomPays VARCHAR(15) PRIMARY KEY
 );
 
 CREATE TABLE ATHLETE(
@@ -34,8 +40,17 @@ CREATE TABLE ATHLETE(
     force_ DECIMAL,
     agilite DECIMAL,
     endurance DECIMAL,
-    idPays INT,
+    nomPays VARCHAR(15),
     idEquipe INT,
     FOREIGN KEY (idEquipe) REFERENCES EQUIPE(idEquipe),
-    FOREIGN KEY (idPays) REFERENCES PAYS(idPays)
+    FOREIGN KEY (nomPays) REFERENCES PAYS(nomPays)
+);
+
+create table UTILISATEUR(
+    idUser INT PRIMARY KEY,
+    nomUser VARCHAR(50),
+    prenomUser VARCHAR(50),
+    pseudo VARCHAR(50),
+    mdp VARCHAR(50),
+    roleUser VARCHAR(50)
 );
