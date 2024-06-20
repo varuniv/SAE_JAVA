@@ -13,5 +13,7 @@ import main.java.com.cdal.Modèle.*;
 import main.java.com.cdal.Modèle.*;
 
 public class NatationTest {
-
+    @BeforeEach
+    public void setUp(){
+    Natation brasseNatation = new Natation("Natation brasse", false, 1, 100);}
 }

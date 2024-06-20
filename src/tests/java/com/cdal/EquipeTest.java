@@ -14,7 +14,9 @@ import main.java.com.cdal.Modèle.*;
 
 
 public class EquipeTest {
-
+    @BeforeEach
+    public void setUp(){
+    Athlete athlete = new Athlete("Doe", "John", "M", 15.0, 10.0, 12.0, new Pays("France"), 1);}
     
     
 }

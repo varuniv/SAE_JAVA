@@ -2,13 +2,12 @@ import java.sql.*;
 
 public class ConnexionMySQL {
 	private Connection mysql;
-	private boolean connecte=false;
-	public ConnexionMySQL() throws ClassNotFoundException{
-		this.mysql=null;
-		this.connecte=false;
-		Class.forName("org.mariadb.jdbc.Driver");
+	private boolean connecte=true;
+	public ConnexionMySQL() throws SQLException{
+		this.mysql = DriverManager.getConnection(
+                     "jdbc:mysql://servinfo-maria:3306/DBvardanyan","vardanyan","vardanyan");
+		
 	}
-
 	public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
 		this.mysql=null;
 		this.connecte=false;

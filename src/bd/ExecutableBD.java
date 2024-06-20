@@ -4,7 +4,7 @@ public class ExecutableBD {
             
             ConnexionMySQL connexion = new ConnexionMySQL();
             // Connexion à la BD
-            connexion.connecter("servinfo-maria", "DBguihard", "guihard", "guihard");
+            
             // Check la connexion
             if(connexion.isConnecte()){
                 BD bd = new BD(connexion);

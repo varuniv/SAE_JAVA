@@ -11,7 +11,12 @@ import org.junit.jupiter.api.Test;
 import main.java.com.cdal.Modèle.*;
 
 public class EpreuveTest {
+    @BeforeEach
+    public void setUp(){
+        Natation brasseNatation = new Natation("Natation brasse", false, 1, 100);
 
+        Epreuve brasseM = new Epreuve("100m brasse hommes", brasseNatation, "M", 4.1, 1.9, 1.5, 101);
+        Epreuve brasseF = new Epreuve("100m brasse femmes", brasseNatation, "F",  4.1, 1.9, 1.5, 102);}
     
 
     

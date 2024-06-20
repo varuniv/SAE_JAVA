@@ -18,6 +18,6 @@ public class AthletismeTest {
     
     @BeforeEach
     public void setUp(){
-        Athletisme
+        Athletisme athletisme110m = new Athletisme("Athletisme 110m", false, 1, 110);
     }
 }
