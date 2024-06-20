@@ -127,8 +127,51 @@ public class ControllerPage implements EventHandler<ActionEvent>{
 
             }
             else if (btn.getText().equals("Créer la Compétition")){
-                appli.pageConsultation();
+                try {
+                    String nomcompet = this.tfnomcompet.getText();
+                    int nbElemCombo = this.epreuves.getItems().size(); // Nombres d'items du ComboBox
+
+                    // Liste des athlètes
+                    Set<Athlete> lesAthletes = this.appli.getBD().selectAthletes();
+                    List<Participant> athletesList = new ArrayList<>();
+                    for (Athlete athlete : lesAthletes) {
+                        athletesList.add(athlete);
+                    }
+
+                    // Liste des équipes
+                    Set<Equipe> lesEquipes = this.appli.getBD().selectEquipes();
+                    List<Participant> equipesList = new ArrayList<>();
+                    for (Equipe equipe : lesEquipes) {
+                        equipesList.add(equipe);
+                    }
+
+                    // Copie de la liste pour avoir uniquement les informations correspondants au radiobutton sélectionné
+                    List<Participant> listeSelectionne = new ArrayList<>();
+                    if (rdAthlete.isSelected()) {
+                        listeSelectionne.addAll(athletesList);
+                    } else if (rdEquipe.isSelected()) {
+                        listeSelectionne.addAll(equipesList);
+                    }
+
+                    // Set the combined list to the ListView
+                    this.liste.setItems(listeSelectionne);
+
+                    // Check if competition name is not empty and ComboBox has items
+                    if (!nomcompet.isEmpty() && nbElemCombo != 0) {
+                        // Create a new Competition object
+                        Competition compet = new Competition(nomcompet, listeSelectionne, this.epreuves.getSelectionModel().getSelectedItem());
+                        compet.
+                    }
+
+                    // Navigate to the consultation page
+                    appli.pageConsultation();
+                } 
+                catch (Exception e) {
+                    e.printStackTrace();
+                    // Handle the exception (show alert, log error, etc.)
+                }
             }
+
             else if (btn.getText().equals("Retour")){
                 appli.pageConsultation();
             }
