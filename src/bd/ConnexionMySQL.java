@@ -6,6 +6,7 @@ public class ConnexionMySQL {
 	public ConnexionMySQL() throws SQLException{
 		this.mysql = DriverManager.getConnection(
                      "jdbc:mysql://servinfo-maria:3306/DBvardanyan","vardanyan","vardanyan");
+		System.out.println(this.mysql);
 		
 	}
 	public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
