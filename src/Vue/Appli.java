@@ -1,12 +1,12 @@
-package main.java.com.cdal.Vue;
-
-import bd.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import java.io.File;
 
 public class Appli extends Application {
 
@@ -105,7 +105,7 @@ public class Appli extends Application {
         this.tfPrenom = (TextField)this.mainScene.lookup("#tfprenom");
         this.tfPseudo = (TextField)this.mainScene.lookup("#tfpseudo");
         this.tfPays = (TextField)this.mainScene.lookup("#tfpays");
-        this.tfPwd = (TextField)this.mainScene.lookup("#tfpassword");
+        this.tfPwd = (PasswordField)this.mainScene.lookup("#tfpassword");
         this.tfConfirm = (TextField)this.mainScene.lookup("#tfconfirm");
         this.bInscrire = (Button)this.mainScene.lookup("#inscrire");
         this.bRetour = (Button) this.mainScene.lookup("#annuler"); 
