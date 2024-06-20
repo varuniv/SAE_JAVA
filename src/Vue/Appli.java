@@ -23,11 +23,9 @@ public class Appli extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println("M");
         Appli.primaryStage = primaryStage;
         FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/PageDeConnexion.fxml").toURI().toURL());
         Parent root = loader.load();
-        System.out.println("F");
         primaryStage.setTitle("Page de connexion");
         this.mainScene = new Scene(root);
         primaryStage.setScene(this.mainScene);
