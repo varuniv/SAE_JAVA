@@ -106,7 +106,7 @@ public class Appli extends Application {
         this.tfPseudo = (TextField)this.mainScene.lookup("#tfpseudo");
         this.tfPays = (TextField)this.mainScene.lookup("#tfpays");
         this.tfPwd = (PasswordField)this.mainScene.lookup("#tfpassword");
-        this.tfConfirm = (TextField)this.mainScene.lookup("#tfconfirm");
+        this.tfConfirm = (PasswordField)this.mainScene.lookup("#tfconfirm");
         this.bInscrire = (Button)this.mainScene.lookup("#inscrire");
         this.bRetour = (Button) this.mainScene.lookup("#annuler"); 
         this.bInscrire.setOnAction(new ControllerPage(this));
