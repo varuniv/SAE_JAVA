@@ -16,6 +16,7 @@ CREATE TABLE EPREUVE(
     critereForce DECIMAL,
     critereAgilite DECIMAL,
     critereEndurance DECIMAL,
+    nbAthlete INT,
     attributSport VARCHAR(20), -- Si le sport n'a pas d'attributs on initialise à NULL
     nomCompet varchar(50),
     FOREIGN KEY (nomCompet) REFERENCES COMPETITION(nomCompet)
