@@ -32,24 +32,6 @@ public class ControllerPage implements EventHandler<ActionEvent>{
     private Button inscrire;
 
     @FXML
-    private PasswordField tfconfirm;
-
-    @FXML
-    private TextField tfnom;
-
-    @FXML
-    private PasswordField tfpassword;
-
-    @FXML
-    private TextField tfpays;
-
-    @FXML
-    private TextField tfprenom;
-
-    @FXML
-    private TextField tfpseudo;
-
-    @FXML
     private TextField tfnomcompet;
 
     @FXML
@@ -75,16 +57,24 @@ public class ControllerPage implements EventHandler<ActionEvent>{
             }
             else if (btn.getText().equals("M'inscrire")){
                 try{
-                    String nomco = appli.getTNomCo();
-                    String mdpco = appli.getTMdpCo();
-                    if (!(tfconfirm.getText().equals("") && tfnom.getText().equals("") && tfpassword.getText().equals("") && tfpays.getText().equals("") && tfprenom.getText().equals("") && tfpseudo.getText().equals(""))){ // Si tous les textfields sont complétés
-                        if (this.tfconfirm.getText().equals(this.tfpassword.getText())){
-                            if (!this.appli.getBD().userInBd(nomco, mdpco)){
-                                String nomins = this.tfnom.getText();
-                                String prenom = this.tfprenom.getText();
-                                String pseudo = this.tfpseudo.getText();
-                                String mdpins = this.tfpassword.getText();
-                                this.appli.getBD().insertUtilisateur(nomins, prenom, pseudo, mdpins);
+                    String tfnom = appli.getTfNom();
+                    String tfprenom = appli.getTfPrenom();
+                    String tfpseudo = appli.getTfPseudo();
+                    String tfpays = appli.getTfPays();
+                    String tfpassword = appli.getTfPwd();
+                    String tfconfirm = appli.getTfConfirm();
+                    
+                    if (!(tfnom.equals("") && tfprenom.equals("") && tfpseudo.equals("") && tfpays.equals("") && tfpassword.equals("") && tfconfirm.equals(""))){ // Si tous les textfields sont complétés
+                        if (tfconfirm.equals(tfpassword)){
+                            if (!appli.getBD().userInBd(tfnom, tfpassword)){
+                                appli.getBD().insertUtilisateur(tfnom, tfprenom, tfpseudo, tfpassword);
+                                appli.setTfNom();
+                                appli.setTfPrenom();
+                                appli.setTfPseudo();
+                                appli.setTfPays();
+                                appli.setTfPwd();
+                                appli.setTfConfirm();
+                                System.out.println("Coucou");
                                 appli.pageDeConnexion();
                             }
                         }
@@ -99,13 +89,13 @@ public class ControllerPage implements EventHandler<ActionEvent>{
                 appli.pageDeConnexion();  
             }
             else if (btn.getText().equals("Se Connecter")){
+                
                 String nom = appli.getTNomCo();
                 String mdp = appli.getTMdpCo();
-                if (nom.equals("admin") && mdp.equals("admin")){
-                    appli.pageConsultation();
-                }
+                appli.setTNomCo();
+                appli.setTMdpCo();
                 
-                else if(!appli.getBD().userInBd(nom,mdp)){
+                if(!appli.getBD().userInBd(nom,mdp)){
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erreur");
                     alert.setHeaderText("Erreur de connexion");
@@ -115,9 +105,6 @@ public class ControllerPage implements EventHandler<ActionEvent>{
                 else{
                     appli.pageConsultation();
                 }
-
-                appli.setTNomCo();
-                appli.setTMdpCo();
                 
             }
             else if (btn.getText().equals("Déconnexion")){ 
@@ -128,6 +115,8 @@ public class ControllerPage implements EventHandler<ActionEvent>{
                 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
+                    appli.setTNomCo();
+                    appli.setTMdpCo();
                     appli.pageDeConnexion();
                 }
             }
@@ -192,6 +181,6 @@ public class ControllerPage implements EventHandler<ActionEvent>{
             System.err.println("Erreur lors du changement de page");
         }
 
-}
+    }
 
 }
