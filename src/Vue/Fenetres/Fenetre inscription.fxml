@@ -89,11 +89,11 @@
                   </PasswordField>
                </children>
             </VBox>
-            <VBox prefHeight="370.0" prefWidth="380.0">
+            <VBox prefHeight="370.0" preurlfWidth="380.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../Images/JOParis2024logo.png" />
+                        <Image url="@src/Vue/Fenetres/Images/JOParis2024logo.png" />
                      </image>
                      <VBox.margin>
                         <Insets left="65.0" top="100.0" />

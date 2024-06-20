@@ -1,3 +1,5 @@
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,9 +23,11 @@ public class Appli extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("M");
         Appli.primaryStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PageDeConnexion.fxml"));
+        FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/PageDeConnexion.fxml").toURI().toURL());
         Parent root = loader.load();
+        System.out.println("F");
         primaryStage.setTitle("Page de connexion");
         this.mainScene = new Scene(root);
         primaryStage.setScene(this.mainScene);
@@ -37,7 +41,7 @@ public class Appli extends Application {
 
     public void pageDeConnexion() throws Exception{
     
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PageDeConnexion.fxml"));
+        FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/PageDeConnexion.fxml").toURI().toURL());
         Parent root = loader.load();
         primaryStage.setTitle("Page de connexion");
         this.mainScene = new Scene(root);
@@ -53,7 +57,7 @@ public class Appli extends Application {
 
     public void pageInscription() throws Exception{
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Fenetre_inscription.fxml"));
+        FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/Fenetre_inscription.fxml").toURI().toURL());
         Parent root = loader.load();
         primaryStage.setTitle("Page d'inscription");
         this.mainScene = new Scene(root);
@@ -67,7 +71,7 @@ public class Appli extends Application {
     
     public void pageConsultation() throws Exception{
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FenetreConsultationClassement.fxml"));
+        FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/FenetreConsultationClassement.fxml").toURI().toURL());
         Parent root = loader.load();
         primaryStage.setTitle("Page de Consultation");
         this.mainScene = new Scene(root);
@@ -81,7 +85,7 @@ public class Appli extends Application {
 
     public void pageCompetition() throws Exception{
       
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Fenetre_Creation_Competition.fxml"));
+        FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/Fenetre_Creation_Competition.fxml").toURI().toURL());
         Parent root = loader.load();
         primaryStage.setTitle("Création de Compétition");
         this.mainScene = new Scene(root);

@@ -19,7 +19,7 @@
                   <Insets left="30.0" top="30.0" />
                </VBox.margin>
                <image>
-                  <Image url="@../Bureau/maquette%20java/logo_jo.jpg" />
+                  <Image url="@src/Vue/Fenetres/Images/logoJOParis2024.png" />
                </image>
             </ImageView>
             <VBox prefHeight="165.0" prefWidth="342.0">
@@ -63,7 +63,7 @@
       </VBox>
       <ImageView fitHeight="480.0" fitWidth="346.0" layoutX="451.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Bureau/maquette%20java/tour_eiffel.jpeg" />
+            <Image url="@src/Vue/Fenetres/Images/tour_eiffel.jpeg" />
          </image>
       </ImageView>
    </children>
