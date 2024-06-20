@@ -37,6 +37,15 @@ public class Epreuve implements MeilleurAthlete{
         this.critereEndurance = endurance;
     }
 
+    public double getForce(){
+        return this.critereForce;
+    }
+    public double getEndurance(){
+        return this.critereEndurance;
+    }
+    public double getAgilite(){
+        return this.critereAgilite;
+    }
     /**
      * @param athlete
      */

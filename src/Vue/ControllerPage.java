@@ -1,5 +1,3 @@
-package main.java.com.cdal.Vue;
-
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
