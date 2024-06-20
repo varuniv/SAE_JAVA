@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="100.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@src/Vue/Fenetres/Images/JOParis2024logo.png" />
+                  <Image url="@Images/JOParis2024logo.png" />
                </image>
             </ImageView>
             <Text fill="#545454" strokeType="OUTSIDE" strokeWidth="0.0" text="Classement Jeux Olympiques">

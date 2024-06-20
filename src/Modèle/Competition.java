@@ -85,7 +85,7 @@ public class Competition{
      */
     public List<Participant> ExecutionPooleEquipe(){
         Map<Participant,List<Participant>> dic = new HashMap<>();
-        if (!(listeParticipant.isEmpty())) {
+        if (!(listeParticipant.isEmpty())) {System.out.println("M");
             for (Participant pr1 : this.listeParticipant) {
                 dic.put(pr1, new ArrayList<>());
                 for (Participant pr2 : this.listeParticipant) {

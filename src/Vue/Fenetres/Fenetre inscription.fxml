@@ -93,7 +93,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="250.0" pickOnBounds="true">
                      <image>
-                        <Image url="@src/Vue/Fenetres/Images/JOParis2024logo.png" />
+                        <Image url="Images/JOParis2024logo.png" />
                      </image>
                      <VBox.margin>
                         <Insets left="65.0" top="100.0" />
