@@ -1,3 +1,6 @@
+
+import src.main.java.com.cdal.Modèle.*;
+
 import java.sql.*;
 import java.io.*;
 import java.util.HashSet;
@@ -357,10 +360,17 @@ public class BD {
         }
     }
     
-    public void insertUtilisateur(String nom, String prenom, String pseudo, String mdp){
-        this.initSt().executeUpdate("insert into UTILISATEUR(idUser, nomUser, prenomUser, pseudo, mdp, roleUser) values ("+idUser +",'"+ nom+"','"+ prenom+"','"+ pseudo+"','"+ mdp+"','journaliste')");
+    public void insertUtilisateur(String nom, String prenom, String pseudo, String mdp) throws SQLException{
+        this.initSt();
+        this.st.executeUpdate("insert into UTILISATEUR(idUser, nomUser, prenomUser, pseudo, mdp, roleUser) values ("+idUser +",'"+ nom+"','"+ prenom+"','"+ pseudo+"','"+ mdp+"','journaliste')");
         this.st.executeUpdate("create user '"+idUser+ "' identified by '"+mdp+"'");
         this.st.executeUpdate("grant journaliste to '"+idUser+"'");
         idUser++;
+    }
+
+    public boolean userInBd(String nom, String password) throws SQLException{
+        this.initSt();
+        ResultSet rs = this.st.executeQuery("select * from UTILISATEUR where mdp='"+password+"' and prenomUser='"+nom+"'");
+        return rs.next();
     }
 }

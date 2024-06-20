@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS EPREUVE;
 DROP table IF EXISTS COMPETITION;
 
 create table COMPETITION(
-    nomCompet varchar(50);
+    nomCompet varchar(50)
 );
 
 CREATE TABLE EPREUVE(
