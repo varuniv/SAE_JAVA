@@ -1,7 +1,11 @@
+
+
 import java.sql.*;
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Map;
+import java.util.HashMap;
 
 public class BD {
     ConnexionMySQL laConnexion;
@@ -28,7 +32,7 @@ public class BD {
             nomsPays.add(rs.getString(1));
         }
         if (!nomsPays.contains(nomPays)) {
-            String paysQuery = "insert into PAYS(nomPays) values('" + nomPays + "')";
+            String paysQuery = "insert into PAYS(nomPays,nbMedaillesOrP, nbMedaillesArgentP, nbMedaillesBronzeP) values('" + nomPays + "', "+0+", "+0+", "+0+")";
             this.st.executeUpdate(paysQuery);
         }
     }
@@ -76,7 +80,7 @@ public class BD {
         }
     }
 
-    public void insertAthlete(String nom, String prenom, char sexe, double force, double endurance, double agilite, String nomPays, String nomEquipe) throws SQLException {
+    public void insertAthlete(String nom, String prenom, char sexe, double force, double endurance, double agilite, String nomPays, String nomEquipe, int nbMedailleOr, int nbMedailleArgent, int nbMedailleBronze) throws SQLException {
         String nomP = "";
         try(ResultSet rs = this.st.executeQuery("select nomPays from PAYS where nomPays='"+nomPays+"'")){
             if(rs.next()){
@@ -102,7 +106,7 @@ public class BD {
             idEquipeBD = "NULL";
         }
         String athleteQuery = "insert into ATHLETE(idAthlete, prenom, nom, sexe, force_, agilite, endurance, nomPays, idEquipe) VALUES (" +
-                this.idAthlete + ", '" + prenom + "', '" + nom + "', '" + sexe + "', " + force + ", " + agilite + ", " + endurance + ", '" + nomPays + "', " + idEquipeBD + ")";
+                this.idAthlete + ", '" + prenom + "', '" + nom + "', '" + sexe + "', " + force + ", " + agilite + ", " + endurance + ", '" + nomPays + "', " + idEquipeBD + ","+0+","+0+","+0+")";
         this.st.executeUpdate(athleteQuery);
         this.idAthlete++;
     }
@@ -125,9 +129,9 @@ public class BD {
                 char sexe = row[2].charAt(0);
                 String nomPays = row[3];
                 String sport = row[4];
-                int force = Integer.parseInt(row[5]);
-                int endurance = Integer.parseInt(row[6]);
-                int agilite = Integer.parseInt(row[7]);
+                double force = Double.parseDouble(row[5]);
+                double endurance = Double.parseDouble(row[6]);
+                double agilite = Double.parseDouble(row[7]);
                 String estEnEquipe = row[8];
                 boolean enEquipe = estEnEquipe.equals("True");
                 int forceEpreuve = Integer.parseInt(row[9]);
@@ -140,7 +144,7 @@ public class BD {
                 this.insertPays(nomPays);
                 this.insertEpreuve(sport, enEquipe, forceEpreuve, agiliteEpreuve, enduranceEpreuve, attributSport);
                 this.insertEquipe(sport, nomEquipe);
-                this.insertAthlete(nom, prenom, sexe, force, endurance, agilite, nomPays, nomEquipe);
+                this.insertAthlete(nom, prenom, sexe, force, endurance, agilite, nomPays, nomEquipe, 0, 0, 0);
             }
             System.out.println("Inserts effectués avec succès\n");
         } catch (Exception e) {
@@ -172,6 +176,9 @@ public class BD {
         String nomPays = rs.getString(8);
         String idE = rs.getString(9);
         String nomEquipe="Pas d'équipe";
+        int nbMedaillesOr = rs.getInt(10);
+        int nbMedaillesArgent = rs.getInt(11);
+        int nbMedaillesBronze = rs.getInt(12);
         
         if(idE!=null){
             ResultSet rs3 = this.st.executeQuery("select nomEquipe from EQUIPE where idEquipe="+idE);
@@ -179,7 +186,7 @@ public class BD {
                 nomEquipe = rs3.getString(1);
             }
         }
-        athlete+="Id de l'athlete: "+idA+"\nPrénom: "+prenomA+"\nNom: "+nomA+"\nSexe: "+sexeA+"\nForce: "+forceA+"\nAgilité: "+agiliteA+"\nEndurance: "+enduranceA+"\nPays: "+nomPays+"\nEquipe: "+nomEquipe+"\n";
+        athlete+="Id de l'athlete: "+idA+"\nPrénom: "+prenomA+"\nNom: "+nomA+"\nSexe: "+sexeA+"\nForce: "+forceA+"\nAgilité: "+agiliteA+"\nEndurance: "+enduranceA+"\nPays: "+nomPays+"\nEquipe: "+nomEquipe+"\nMédailles: Or: "+nbMedaillesOr+" Argent: "+nbMedaillesArgent+" Bronze: "+nbMedaillesBronze;
         return athlete;
     }
 
@@ -190,7 +197,11 @@ public class BD {
             ResultSet rs = this.st.executeQuery("select * from PAYS where nomPays="+nomPays);
             rs.next();
             String nomP = rs.getString(1);
-            pays+="Nom du pays: "+nomP+"\n";
+            int nbMedaillesOr = rs.getInt(2);
+            int nbMedaillesArgent = rs.getInt(3);
+            int nbMedaillesBronze = rs.getInt(4);
+            
+            pays+="Nom du pays: "+nomP+"\nMédailles: Or: "+nbMedaillesOr+" Argent: "+nbMedaillesArgent+"\n  Bronze: "+nbMedaillesBronze+"\n";
         }
         catch (Exception e){
             System.out.println("Pays non présent dans la bd. A ajouter");
@@ -292,6 +303,13 @@ public class BD {
         double agiliteA = athlete.getAgilite();
         double enduranceA = athlete.getEndurance();
         String nomP = athlete.getPays().getNom();
+        
+        Map<String,Integer> lesMedailles = athlete.getMedailles();
+        int nbMedaillesOr = lesMedailles.get("Or");
+        int nbMedaillesArgent = lesMedailles.get("Argent");
+        int nbMedaillesBronze = lesMedailles.get("Bronze");
+
+        
         String nomEquipe = "";
         ResultSet resID = this.st.executeQuery("select idAthlete from ATHLETE");
         ResultSet resEquipe = this.st.executeQuery("select nomEquipe from ATHLETE natural join EQUIPE where idAthlete=" +idA);
@@ -299,7 +317,7 @@ public class BD {
             nomEquipe = resEquipe.getString(1);
         }
             String selectQuery = "SELECT idEquipe FROM ATHLETE WHERE idAthlete = ?";
-            String updateQuery = "UPDATE ATHLETE SET prenom = ?, nom = ?, sexe = ?, force_ = ?, agilite = ?, endurance = ?, nomPays = ?, idEquipe = ? WHERE idAthlete = ?";
+            String updateQuery = "UPDATE ATHLETE SET prenom = ?, nom = ?, sexe = ?, force_ = ?, agilite = ?, endurance = ?, nomPays = ?, idEquipe = ?, nbnbMedaillesOr = ?, nbMedaillesArgent = ?, nbMedaillesBronze = ? WHERE idAthlete = ?";
     
             try (PreparedStatement selectStmt = this.laConnexion.prepareStatement(selectQuery);
                  PreparedStatement updateStmt = this.laConnexion.prepareStatement(updateQuery)) {
@@ -317,13 +335,16 @@ public class BD {
                         updateStmt.setDouble(6, enduranceA);
                         updateStmt.setString(7, nomP);
                         updateStmt.setInt(8, idE);
-                        updateStmt.setInt(9, idA);
+                        updateStmt.setInt(9, nbMedaillesOr);
+                        updateStmt.setInt(10, nbMedaillesArgent);
+                        updateStmt.setInt(11, nbMedaillesArgent);
+                        updateStmt.setInt(12, idA);
     
                         updateStmt.executeUpdate();
                     System.out.println("Update de l'athlète réalisé avec succès");
                     }
                     else {
-                        this.insertAthlete(nomA, prenomA, sexeA.charAt(0), forceA, enduranceA, agiliteA, nomP, nomEquipe);
+                        this.insertAthlete(nomA, prenomA, sexeA.charAt(0), forceA, enduranceA, agiliteA, nomP, nomEquipe, nbMedaillesOr, nbMedaillesArgent, nbMedaillesBronze);
                 }
             }
         }
@@ -359,16 +380,24 @@ public class BD {
     
     public void insertUtilisateur(String nom, String prenom, String pseudo, String mdp) throws SQLException{
         this.initSt();
+        System.out.println("Fonction d'insert");
         this.st.executeUpdate("insert into UTILISATEUR(idUser, nomUser, prenomUser, pseudo, mdp, roleUser) values ("+idUser +",'"+ nom+"','"+ prenom+"','"+ pseudo+"','"+ mdp+"','journaliste')");
-        this.st.executeUpdate("create user '"+idUser+ "' identified by '"+mdp+"'");
-        this.st.executeUpdate("grant journaliste to '"+idUser+"'");
+        System.out.println("Insert effectué");
+        //this.st.executeUpdate("create user '"+idUser+ "' identified by '"+mdp+"'");
+        //this.st.executeUpdate("grant journaliste to '"+idUser+"'");
         idUser++;
     }
 
     public boolean userInBd(String nom, String password) throws SQLException{
         this.initSt();
-        ResultSet rs = this.st.executeQuery("select * from UTILISATEUR where mdp='"+password+"' and prenomUser='"+nom+"'");
-        return rs.next();
+        String requete = "select * from UTILISATEUR where mdp='"+password+"' and nomUser='"+nom+"'";
+        System.out.println(requete);
+        System.out.println("Statement:" + this.st);
+        ResultSet rs = this.st.executeQuery(requete);
+        
+        boolean boole = rs.next();
+        rs.close();
+        return boole;
     }
 
     public Set<Athlete> selectAthletes() throws Exception{

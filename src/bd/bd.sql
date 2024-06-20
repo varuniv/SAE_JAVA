@@ -3,9 +3,10 @@ DROP TABLE IF EXISTS PAYS;
 DROP TABLE IF EXISTS EQUIPE;
 DROP TABLE IF EXISTS EPREUVE;
 DROP table IF EXISTS COMPETITION;
+DROP TABLE IF EXISTS UTILISATEUR;
 
 create table COMPETITION(
-    nomCompet varchar(50)
+    nomCompet varchar(50) PRIMARY KEY
 );
 
 CREATE TABLE EPREUVE(
@@ -30,7 +31,10 @@ CREATE TABLE EQUIPE(
 );
 
 CREATE TABLE PAYS(
-    nomPays VARCHAR(15) PRIMARY KEY
+    nomPays VARCHAR(15) PRIMARY KEY,
+    nbMedaillesOrP INT,
+    nbMedaillesArgentP INT,
+    nbMedaillesBronzeP INT
 );
 
 CREATE TABLE ATHLETE(
@@ -43,6 +47,9 @@ CREATE TABLE ATHLETE(
     endurance DECIMAL,
     nomPays VARCHAR(15),
     idEquipe INT,
+    nbMedaillesOr INT,
+    nbMedaillesArgent INT,
+    nbMedaillesBronze INT,
     FOREIGN KEY (idEquipe) REFERENCES EQUIPE(idEquipe),
     FOREIGN KEY (nomPays) REFERENCES PAYS(nomPays)
 );
