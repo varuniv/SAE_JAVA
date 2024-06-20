@@ -8,7 +8,7 @@ public class ExecutableBD {
             // Check la connexion
             if(connexion.isConnecte()){
                 BD bd = new BD(connexion);
-                bd.csvToSQL("bd/donnees.csv");
+                bd.csvToSQL("src/bd/donnees.csv");
                 System.out.println(bd.selectAthleteFromId(5));
                 System.out.println(bd.selectPaysFromNom("France"));
                 System.out.println(bd.selectEquipeFromId(201));

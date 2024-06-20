@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "testeeee",
+            "request": "launch",
+            "mainClass": "testeeee",
+            "projectName": "SAE_JAVA_17ee27ea"
+        },
+        {
+            "type": "java",
             "name": "ExecutableBD",
             "request": "launch",
             "mainClass": "ExecutableBD",

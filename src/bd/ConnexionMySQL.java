@@ -4,6 +4,7 @@ public class ConnexionMySQL {
 	private Connection mysql;
 	private boolean connecte=true;
 	public ConnexionMySQL() throws SQLException{
+
 		this.mysql = DriverManager.getConnection(
                      "jdbc:mysql://servinfo-maria:3306/DBvardanyan","vardanyan","vardanyan");
 		System.out.println(this.mysql);

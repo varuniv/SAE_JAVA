@@ -36,10 +36,10 @@ public class Appli extends Application {
             //Instanciation de la classe BD
             ConnexionMySQL connexion = new ConnexionMySQL();
             // Connexion à la BD
-            connexion.connecter("servinfo-maria", "DBguihard", "guihard", "guihard");
             this.bd = new BD(connexion);
             Appli.primaryStage = primaryStage;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Fenetres/PageDeConnexion.fxml"));
+            FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/PageDeConnexion.fxml").toURI().toURL());
+            System.out.println(loader);
             Parent root = loader.load();
             primaryStage.setTitle("Page de connexion");
             this.mainScene = new Scene(root);
