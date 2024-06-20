@@ -392,64 +392,76 @@ public class BD {
         return athletes;
     }
 
-    // public Set<Equipe> selectEquipes(){//Il faut initialiser les variable avant les if sinon ça marche pas + revoir la création d'épreuve de natation et d'Athlétisme
-    //     this.initSt();
-    //     Set<Equipe> equipes = new HashSet<>();
-    //     // select Equipe
-    //     ResultSet rs = this.st.executeQuery("select * from EQUIPE");
-    //     // select Pays de l'équipe
-    //     ResultSet rs2 = this.st.executeQuery("select nomPays,sexe from ATHLETE where idEquipe="+rs.getInt(1));
-    //     if(rs2.next()){
-    //         String nomPays = rs2.getString(1);
-    //         String sexe = rs2.getString(2);
-    //     }
-    //     Pays pays = new Pays(nomPays);
-    //     // select Epreuve de l'équipe
-    //     ResultSet rs3 = this.st.executeQuery("select * from EPREUVE where idEpreuve="+rs.getInt(3));
-    //     if(rs3.next()){
-    //         int idEpr = rs3.getInt(1);
-    //         String nomEpreuve = rs3.getString(2);
-    //         String categorie = rs3.getString(3);
-    //         int enEquipe = rs.getInt(4);
-    //         boolean estEnEquipe = true;
-    //         if(enEquipe==0){
-    //             estEnEquipe = false;
-    //         }
-    //         double forceEpr = rs3.getDouble(5);
-    //         double agiliteEpr = rs3.getDouble(6);
-    //         double enduranceEpr = rs3.getDouble(7);
-    //         int nbAthletes = rs.getInt(8);
-    //         String attrSport = rs3.getString(9);
-    //         Sport epr = null;
-    //         if(!attrSport.equals("NULL")){
-    //             if(nomEpreuve.equals("Natation 100 brasse") || nomEpreuve.equals("Natation relais libre")){
-    //                 epr = new Natation(nomEpreuve, estEnEquipe, nbAthletes, attrSport);
-    //             }
-    //             else if(nomEpreuve.equals("Athlétisme 110 haies") || nomEpreuve.equals("Athlétisme relais 400m")){
-    //                 epr = new Athletisme(nomEpreuve, estEnEquipe, nbAthletes, attrSport);
-    //             }
-    //             else{
-    //                 epr = new Escrime(nomEpreuve, attrSport);
-    //             }
-    //         }
-    //         else{
-    //             switch(nomEpreuve){
-    //                 case "Handball":
-    //                     epr = new Handball(nomEpreuve, nbAthletes);
-    //                     break;
-    //                 case "Volley-Ball":
-    //                     epr = new VolleyBall(nomEpreuve, nbAthletes);
-    //                     break;
-    //             }
-    //         }
-    //     }
-    //     Epreuve epreuve = new Epreuve(nomEpreuve, epr, categorie, forceEpr, agiliteEpr, enduranceEpr, idEpr);
-    //     while(rs.next()){
-    //         int idE = rs.getInt(1);
-    //         String nomEquipe = rs.getString(2);
-    //         Equipe equipe = new Equipe(nomEquipe, epreuve, pays, sexe, idE);
-    //         equipes.add(equipe);
-    //     }
-    //     return equipes;
-    // }
+    public Set<Equipe> selectEquipes() throws Exception{//Il faut initialiser les variable avant les if sinon ça marche pas + revoir la création d'épreuve de natation et d'Athlétisme
+         this.initSt();
+         Set<Equipe> equipes = new HashSet<>();
+         // select Equipe
+         ResultSet rs = this.st.executeQuery("select * from EQUIPE");
+         // select Pays de l'équipe
+         ResultSet rs2 = this.st.executeQuery("select nomPays,sexe from ATHLETE where idEquipe="+rs.getInt(1));
+         String nomPays = null;
+         String sexe = null;
+         if(rs2.next()){
+            nomPays = rs2.getString(1);
+            sexe = rs2.getString(2);
+         }
+         Pays pays = new Pays(nomPays);
+         // select Epreuve de l'équipe
+         ResultSet rs3 = this.st.executeQuery("select * from EPREUVE where idEpreuve="+rs.getInt(3));
+         int idEpr = 0;
+         String nomEpreuve = null;
+         String categorie = null;
+         int enEquipe = 0;
+         boolean estEnEquipe = false;
+         double forceEpr = 0;
+         double agiliteEpr = 0;
+         double enduranceEpr = 0;
+         int nbAthletes =  0;
+         String attrSport = null;
+         Sport epr = null;
+         if(rs3.next()){
+             idEpr = rs3.getInt(1);
+             nomEpreuve = rs3.getString(2);
+             categorie = rs3.getString(3);
+             enEquipe = rs.getInt(4);
+             estEnEquipe = true;
+             if(enEquipe==0){
+                 estEnEquipe = false;
+             }
+             forceEpr = rs3.getDouble(5);
+             agiliteEpr = rs3.getDouble(6);
+             enduranceEpr = rs3.getDouble(7);
+             nbAthletes = rs.getInt(8);
+             attrSport = rs3.getString(9);
+             if(!attrSport.equals("NULL")){
+                 if(nomEpreuve.equals("Natation 100 brasse") || nomEpreuve.equals("Natation relais libre")){
+                     epr = new Natation(nomEpreuve, estEnEquipe, nbAthletes, Integer.parseInt(attrSport));
+                 }
+                 else if(nomEpreuve.equals("Athlétisme 110 haies") || nomEpreuve.equals("Athlétisme relais 400m")){
+                     epr = new Athletisme(nomEpreuve, estEnEquipe, nbAthletes, Integer.parseInt(attrSport));
+                 }
+                 else{
+                     epr = new Escrime(nomEpreuve, attrSport);
+                 }
+             }
+             else{
+                 switch(nomEpreuve){
+                     case "Handball":
+                         epr = new Handball(nomEpreuve, nbAthletes);
+                         break;
+                     case "Volley-Ball":
+                         epr = new VolleyBall(nomEpreuve, nbAthletes);
+                         break;
+                 }
+             }
+         }
+         Epreuve epreuve = new Epreuve(nomEpreuve, epr, categorie, forceEpr, agiliteEpr, enduranceEpr, idEpr);
+         while(rs.next()){
+             int idE = rs.getInt(1);
+             String nomEquipe = rs.getString(2);
+             Equipe equipe = new Equipe(nomEquipe, epreuve, pays, sexe, idE);
+             equipes.add(equipe);
+         }
+         return equipes;
+     }
 }
