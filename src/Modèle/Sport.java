@@ -1,10 +1,7 @@
-import java.util.List;
-
 public abstract class Sport {
     protected String nom;
     protected boolean collectif;
     protected int nbJoueur;
-    protected List<Epreuve> epreuves;
 
     /**
      * @param nom le nom du sport
@@ -54,12 +51,6 @@ public abstract class Sport {
         this.nbJoueur = nbJoueur;
     }
 
-    /**
-     * @param epreuve
-     */
-    public void ajouteEpreuve(Epreuve epreuve) {
-        this.epreuves.add(epreuve);
-    }
 
     /**
      * @return le string représentant un sport
