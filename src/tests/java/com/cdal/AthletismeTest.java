@@ -16,4 +16,8 @@ import main.java.com.cdal.Modèle.*;
 public class AthletismeTest {
 
     
+    @BeforeEach
+    public void setUp(){
+        Athletisme
+    }
 }
