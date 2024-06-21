@@ -1,11 +1,11 @@
-
-
 import java.sql.*;
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class BD {
     ConnexionMySQL laConnexion;
@@ -421,7 +421,7 @@ public class BD {
         return athletes;
     }
 
-    public Set<Equipe> selectEquipes() throws Exception{//Il faut initialiser les variable avant les if sinon ça marche pas + revoir la création d'épreuve de natation et d'Athlétisme
+    public Set<Equipe> selectEquipes() throws Exception{
          this.initSt();
          Set<Equipe> equipes = new HashSet<>();
          // select Equipe
@@ -493,4 +493,35 @@ public class BD {
          }
          return equipes;
      }
+
+     public JeuxOlympique getJeuxOlympiques() throws SQLException,PasUnSexeException,PaysDejaDansJOException{
+        this.initSt();
+        JeuxOlympique JO = new JeuxOlympique("JO 2024");
+        // Ajout des pays dans la Map
+        ResultSet rs = this.st.executeQuery("select nomPays from PAYS");
+        while(rs.next()){
+            Pays pays = new Pays(rs.getString(1));
+            JO.ajoutePays(pays);
+        }
+        rs.close();
+        for(Pays paysJO: JO.getPays()){
+    
+            ResultSet rs2 = this.st.executeQuery("select * from ATHLETE where nomPays='"+paysJO.getNom()+"'");
+            while(rs2.next()){
+                int idA = rs.getInt(1);
+                String nomA = rs2.getString(2);
+                String prenomA = rs2.getString(3);
+                String sexeA = rs2.getString(4);
+                double forceA = rs2.getDouble(5);
+                double agiliteA = rs2.getDouble(6);
+                double enduranceA = rs2.getDouble(7);
+                String nomPaysA = rs2.getString(8);
+            
+            Athlete athlete = new Athlete(nomA, prenomA, sexeA, forceA, agiliteA, enduranceA, paysJO, idA);
+            paysJO.ajouteAthlete(athlete);
+            }
+            rs2.close();
+        }
+        return JO;
+    }
 }
