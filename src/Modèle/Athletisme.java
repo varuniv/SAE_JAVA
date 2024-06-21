@@ -33,8 +33,8 @@ public class Athletisme extends Sport{
     }
 
     /**
-     * @param score score du nageur ou de l'équipe 
-     * @return renvoie un temps pour le nageur ou de l'équipe en fonction de leur score.
+     * @param score score d'athlete ou de l'équipe 
+     * @return renvoie un temps pour le d'athlete ou de l'équipe en fonction de leur score.
      */
     public double methodeCalculePerf(double score){
         return (1600-score*1.5)*(this.getDistance()/100);

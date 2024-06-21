@@ -15,6 +15,8 @@ import javafx.scene.control.ButtonType;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class ControllerPage implements EventHandler<ActionEvent>{
     private Appli appli;
@@ -74,21 +76,21 @@ public class ControllerPage implements EventHandler<ActionEvent>{
                                 appli.setTfPays();
                                 appli.setTfPwd();
                                 appli.setTfConfirm();
-                                System.out.println("Coucou");
                                 appli.pageDeConnexion();
                             }
                         }
                     }
                 }
                 catch (Exception e){
-                    System.err.println("Les textfields ne sont pas complétés ");
+                    System.err.println("Echec de l'inscription de l'utilisateur");
                 }
                 
             }
             else if (btn.getText().equals("Annuler")) {
                 appli.pageDeConnexion();  
             }
-            else if (btn.getText().equals("Se Connecter")){
+            //|| event.getCode() == KeyCode.ENTER
+            else if (btn.getText().equals("Se Connecter") ){
                 
                 String nom = appli.getTNomCo();
                 String mdp = appli.getTMdpCo();
@@ -104,6 +106,7 @@ public class ControllerPage implements EventHandler<ActionEvent>{
                 }
                 else{
                     appli.pageConsultation();
+                    appli.majConsultation();
                 }
                 
             }
@@ -127,24 +130,27 @@ public class ControllerPage implements EventHandler<ActionEvent>{
             }
             else if (btn.getText().equals("Créer la Compétition")){
                 try {
-                    // String nomcompet = this.tfnomcompet.getText();
-                    // int nbElemCombo = this.epreuves.getItems().size(); // Nombres d'items du ComboBox
-
-                    // // Liste des athlètes
+                    
+                    //String nomcompet = appli.getTfNomCompetition();
+                    //ComboBox comboEpreuves = appli.getComboBoxEpreuves();
+                    //RadioButton rdAThlete = appli.getRadioButtonAthlete();
+                    //RadioButton rdEquipe = appli.getRadioButtonEquipe();
+                    //
+                    // Liste des athlètes
                     // Set<Athlete> lesAthletes = this.appli.getBD().selectAthletes();
                     // List<Participant> athletesList = new ArrayList<>();
                     // for (Athlete athlete : lesAthletes) {
                     //     athletesList.add(athlete);
                     // }
 
-                    // // Liste des équipes
+                    // Liste des équipes
                     // Set<Equipe> lesEquipes = this.appli.getBD().selectEquipes();
                     // List<Participant> equipesList = new ArrayList<>();
                     // for (Equipe equipe : lesEquipes) {
                     //     equipesList.add(equipe);
                     // }
 
-                    // // Copie de la liste pour avoir uniquement les informations correspondants au radiobutton sélectionné
+                    // Copie de la liste pour avoir uniquement les informations correspondants au radiobutton sélectionné
                     // List<Participant> listeSelectionne = new ArrayList<>();
                     // if (rdAthlete.isSelected()) {
                     //     listeSelectionne.addAll(athletesList);
@@ -152,8 +158,8 @@ public class ControllerPage implements EventHandler<ActionEvent>{
                     //     listeSelectionne.addAll(equipesList);
                     // }
 
-                    // // Set the combined list to the ListView
-                    // //this.liste.setItems(listeSelectionne);  //MARCHE PAS LISTE N'EST PAS UN ATTRIBUT
+                    // Set the combined list to the ListView
+                    // this.appli.setItems(listeSelectionne);  //MARCHE PAS LISTE N'EST PAS UN ATTRIBUT
 
                     // // Check if competition name is not empty and ComboBox has items
                     // if (!nomcompet.isEmpty() && nbElemCombo != 0) {
@@ -164,6 +170,7 @@ public class ControllerPage implements EventHandler<ActionEvent>{
 
                     // Navigate to the consultation page
                     appli.pageConsultation();
+                    appli.majConsultation();
                 } 
                 catch (Exception e) {
                     e.printStackTrace();
@@ -173,6 +180,7 @@ public class ControllerPage implements EventHandler<ActionEvent>{
 
             else if (btn.getText().equals("Retour")){
                 appli.pageConsultation();
+                appli.majConsultation();
             }
 
 
@@ -182,5 +190,16 @@ public class ControllerPage implements EventHandler<ActionEvent>{
         }
 
     }
+
+    btn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode() == KeyCode.ENTER ) {
+                // ... code omitted for brevity ...
+            }
+        }
+    });
+
+    
 
 }

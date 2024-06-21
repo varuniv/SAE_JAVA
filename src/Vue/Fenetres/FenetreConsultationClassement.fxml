@@ -16,7 +16,7 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="100.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ImageConsul" fitHeight="100.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@./src/Vue/Fenetres/Images/JOParis2024logo.png" />
                </image>

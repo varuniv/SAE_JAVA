@@ -1,4 +1,5 @@
 import src.bd.*;
+import src.Modèle.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,11 +12,23 @@ import java.io.File;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.RadioButton;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Appli extends Application {
 
     private Scene mainScene;
     private static Stage primaryStage;
+
+
 
     //Page de Connexion
     private Button bCo;
@@ -41,11 +54,27 @@ public class Appli extends Application {
     //Competition
     private Button bback;
     private Button bcreercomp;
+    private ListView listeComp;
+    private TextField nomCompetition; //
+    private ComboBox comboboxEpreuves;
+    private RadioButton rdAthlete;
+    private RadioButton rdEquipe;
+
+    private Image imageJO1;
+    private Image imageJO2;
+    private Image eiffel; 
+
+
 
     
     private BD bd;
-   
-
+    @Override
+    public void init(){
+    // Initialisation des Images
+    //this.imageJO1 = new Image("");
+    this.imageJO2 = new Image("file:logoJOParis2024.png");
+    //this.eiffel = new Image("");
+    }
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
@@ -64,6 +93,10 @@ public class Appli extends Application {
             this.bCo = (Button) this.mainScene.lookup("#BtnCo"); 
             this.tNomCo = (TextField) this.mainScene.lookup("#IdCo"); 
             this.tMdpCo = (PasswordField) this.mainScene.lookup("#MDP"); 
+            ImageView imageCo = (ImageView) this.mainScene.lookup("#ImageCo");
+            ImageView imageEiffel = (ImageView) this.mainScene.lookup("#Eiffel");
+            imageCo.setImage(this.imageJO1);
+            imageCo.setImage(this.eiffel);
             this.bSins.setOnAction(new ControllerPage(this));
             this.bCo.setOnAction(new ControllerPage(this));
             primaryStage.show();
@@ -74,6 +107,9 @@ public class Appli extends Application {
         }
         
     }
+
+
+    
 
 // Getters et Setters de connexion
     public String getTNomCo() {
@@ -133,9 +169,48 @@ public class Appli extends Application {
 
 // Getters et Setters de Consultation
     public TableView getTableClassement(){
-        return this.tableClassement;
+        return this.tableClassement;   
+    }                                  
+
+// Getters et Setters de Competition
+    public String getTfNomCompetition(){
+        return this.nomCompetition.getText();
     }
 
+    public ComboBox getComboBoxEpreuves(){
+        return this.comboboxEpreuves;
+    }
+
+    public RadioButton getRadioButtonAthlete(){
+        return this.rdAthlete;
+    }
+
+    public RadioButton getRadioButtonEquipe(){
+        return this.rdEquipe;
+    }
+
+    public ListView getListComp(){
+        return this.listeComp;
+    }
+
+    public void setTfNomCompetition(){
+        this.nomCompetition.setText("");
+    }
+    
+    public void setComboBoxEpreuves(){
+        this.comboboxEpreuves = new ComboBox<>();
+    }
+
+    public void setRadioButtonAthlete(){
+        this.rdAthlete.setSelected(false);
+    }
+
+    public void setRadioButtonEquipe(){
+        this.rdEquipe.setSelected(false);
+    }
+
+
+   
 
     public void pageDeConnexion() throws Exception{
         FXMLLoader loader = new FXMLLoader(new File("src/Vue/Fenetres/PageDeConnexion.fxml").toURI().toURL());
@@ -148,6 +223,10 @@ public class Appli extends Application {
         this.bCo = (Button) this.mainScene.lookup("#BtnCo");
         this.tNomCo = (TextField) this.mainScene.lookup("#IdCo"); 
         this.tMdpCo = (PasswordField) this.mainScene.lookup("#MDP"); 
+        ImageView imageCo = (ImageView) this.mainScene.lookup("#ImageCo");
+        ImageView imageEiffel = (ImageView) this.mainScene.lookup("#Eiffel");
+        imageCo.setImage(this.imageJO1);
+        imageCo.setImage(this.eiffel);
         this.bSins.setOnAction(new ControllerPage(this));
         this.bCo.setOnAction(new ControllerPage(this));
         primaryStage.show();
@@ -168,6 +247,8 @@ public class Appli extends Application {
         this.tfConfirm = (PasswordField)this.mainScene.lookup("#tfconfirm");
         this.bInscrire = (Button)this.mainScene.lookup("#inscrire");
         this.bRetour = (Button) this.mainScene.lookup("#annuler"); 
+        ImageView imageIns = (ImageView) this.mainScene.lookup("#ImageInscrire");
+        imageIns.setImage(this.imageJO2);
         this.bInscrire.setOnAction(new ControllerPage(this));
         this.bRetour.setOnAction(new ControllerPage(this));
         primaryStage.show();
@@ -180,16 +261,34 @@ public class Appli extends Application {
         this.mainScene = new Scene(root);
         primaryStage.setScene(this.mainScene);
         this.tableClassement = (TableView)this.mainScene.lookup("Classement");
+        
         this.bdeco = (Button)this.mainScene.lookup("#deconnexion");
         this.bcompet = (Button)this.mainScene.lookup("#creerCompet");
         this.bdeco.setOnAction(new ControllerPage(this));
         this.bcompet.setOnAction(new ControllerPage(this));
+        ImageView imageConsul = (ImageView) this.mainScene.lookup("#ImageConsul");
+        imageConsul.setImage(this.imageJO2);
         primaryStage.show();
     }
 
     public void majConsultation() throws Exception{
+        JeuxOlympique JeuxOlympique2024 = this.bd.getJeuxOlympiques();
+        List<Pays> classementJO = JeuxOlympique2024.classementPays();
+        List<List<String>> listeMedailleStr = new ArrayList<>();
+        for(Pays paysJO : classementJO){
+            String nom = paysJO.getNom();
+            String placement = (classementJO.indexOf(paysJO)+1)+"";
+            String or = paysJO.nbMedailleOr()+"";
+            String argent =  paysJO.nbMedailleArgent()+"";
+            String bronze =  paysJO.nbMedailleBronze()+"";
+            String total = paysJO.nbMedaillesTotales()+"";
+            List<String> listePays = Arrays.asList(nom, placement, or, argent, bronze, total);
+            System.out.println(listePays);
+            listeMedailleStr.add(listePays);
+        }
         
-        //this.tabl.setItems(listeMedaille);
+        //ObservableList<List<String>> listeMedaille = FXCollections.observableArrayList(listeMedailleStr);
+        //this.tableClassement.setItems(listeMedaille);
     }
 
     public void pageCompetition() throws Exception{
@@ -200,16 +299,24 @@ public class Appli extends Application {
         primaryStage.setScene(this.mainScene);
         this.bcreercomp = (Button) this.mainScene.lookup("#createComp");
         this.bback = (Button) this.mainScene.lookup("#retour");
+        this.listeComp = (ListView) this.mainScene.lookup("#liste");
+        this.nomCompetition = (TextField) this.mainScene.lookup("#nomcompet");
+        this.comboboxEpreuves = (ComboBox) this.mainScene.lookup("#epreuves");
+        this.rdAthlete = (RadioButton) this.mainScene.lookup("#solo");
+        this.rdEquipe = (RadioButton) this.mainScene.lookup("#equipe");
         this.bcreercomp.setOnAction(new ControllerPage(this));
         this.bback.setOnAction(new ControllerPage(this));
     }
 
-    
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         launch(args);
     }
 
     public BD getBD(){
         return this.bd;
     }
+
+    public String getCurrentPage(){
+        return primaryStage.getTitle();   
+         }
 }

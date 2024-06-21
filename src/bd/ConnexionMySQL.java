@@ -1,3 +1,5 @@
+
+
 import java.sql.*;
 
 public class ConnexionMySQL {
@@ -14,6 +16,7 @@ public class ConnexionMySQL {
 		this.connecte=false;
 		this.mysql = DriverManager.getConnection(
 					"jdbc:mysql://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
+					
 		this.connecte=true;
 	}
 	public void close() throws SQLException {

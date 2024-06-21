@@ -12,6 +12,7 @@ import main.java.com.cdal.Modèle.*;
 
 public class jeuxOlympiqueTest {
 
-    
+        @BeforeEach
+        public void setUp() {}
     
 }

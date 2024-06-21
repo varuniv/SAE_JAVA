@@ -61,7 +61,7 @@ public class JeuxOlympique  {
     /**
      *@return la liste des pays triée par médaille  
      */
-    public List<Pays> ClassementPays(){
+    public List<Pays> classementPays(){
         List<Pays> classement = new ArrayList<>(); classement.addAll(this.getPays());
         classement.sort(new ComparateurClassementPays());
         return classement;
