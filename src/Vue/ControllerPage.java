@@ -191,15 +191,7 @@ public class ControllerPage implements EventHandler<ActionEvent>{
 
     }
 
-    btn.setOnKeyPressed(new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if (event.getCode() == KeyCode.ENTER ) {
-                // ... code omitted for brevity ...
-            }
-        }
-    });
-
+    
     
 
 }
